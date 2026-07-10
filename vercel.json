@@ -1,18 +1,14 @@
 {
   "builds": [
     {
-      "src": "package.json",
+      "src": "server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/server.js"
     }
   ],
   "crons": [
@@ -20,5 +16,9 @@
       "path": "/api/cron",
       "schedule": "*/10 * * * *"
     }
-  ]
+  ],
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "CRON_SECRET": "@cron_secret"
+  }
 }

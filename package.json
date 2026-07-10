@@ -2,12 +2,17 @@
   "name": "doctor-simulator-web",
   "version": "1.0.0",
   "description": "Landing page for Doctor Simulator - Israel Flight Simulation Community",
-  "main": "index.html",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "dev": "npx http-server -p 3000 -c-1",
-    "build": "echo 'Static site - no build needed'"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build needed'"
   },
   "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "mongodb": "^6.3.0",
     "rss-parser": "^3.13.0"
   },
