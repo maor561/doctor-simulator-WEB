@@ -1,4 +1,10 @@
 {
   "outputDirectory": ".",
-  "buildCommand": "echo 'Static site, no build needed'"
+  "buildCommand": "echo 'Static site with API routes'",
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "*/10 * * * *"
+    }
+  ]
 }

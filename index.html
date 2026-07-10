@@ -136,42 +136,20 @@
       <h2 style="font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px;">📰 לוח חדשות תעופה</h2>
       <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; letter-spacing: 3px;">AVIATION NEWS — DEPARTURES</span>
     </div>
-    <p style="color: #64748b; font-size: 15px; margin: 0 0 40px;">מתעדכן כמה פעמים בשבוע · חדשות מעולם הסימולציה והתעופה האמיתית</p>
+    <p style="color: #64748b; font-size: 15px; margin: 0 0 40px;">עדכון בזמן אמת מ-5 מקורות תעופה רלוונטיים</p>
 
     <!-- board -->
-    <div style="background: #070b16; border: 1px solid #1c2540; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);">
+    <div id="news-board" style="background: #070b16; border: 1px solid #1c2540; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);">
       <!-- board header row -->
       <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 14px 28px; background: #0b1226; border-bottom: 1px solid #1c2540;">
         <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">תאריך</span>
         <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">כותרת</span>
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">סטטוס</span>
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">מקור</span>
       </div>
 
-      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 22px 28px; border-bottom: 1px solid #10182e; align-items: start; transition: background 0.2s ease;" style-hover="background: rgba(251,191,36,0.03);">
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24;">10.07</span>
-        <div>
-          <div style="font-size: 18px; font-weight: 700; color: #fbbf24; letter-spacing: 0.3px; margin-bottom: 6px;">עדכון גדול ל-MSFS 2024 — שיפורי ביצועים דרמטיים</div>
-          <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">מיקרוסופט שחררה עדכון עם שיפור משמעותי בזמני טעינה, תיקוני CTD ותוספת שדות תעופה מעודכנים באזורנו.</div>
-        </div>
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #10b981; border: 1px solid rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); border-radius: 4px; padding: 4px 10px; text-align: center; height: fit-content; letter-spacing: 1px;">חדש<span style="animation: blinkCursor 1s step-end infinite;">_</span></span>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 22px 28px; border-bottom: 1px solid #10182e; align-items: start; transition: background 0.2s ease;" style-hover="background: rgba(251,191,36,0.03);">
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24;">07.07</span>
-        <div>
-          <div style="font-size: 18px; font-weight: 700; color: #e8ecf4; letter-spacing: 0.3px; margin-bottom: 6px;">תחרות נחיתות יולי — ההרשמה נפתחה</div>
-          <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">מי ינחת הכי חלק? תחרות חודשית עם דירוג נחיתות. פרטים והרשמה בקבוצה הכללית.</div>
-        </div>
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); background: rgba(251,191,36,0.08); border-radius: 4px; padding: 4px 10px; text-align: center; height: fit-content; letter-spacing: 1px;">פעיל</span>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 22px 28px; align-items: start; transition: background 0.2s ease;" style-hover="background: rgba(251,191,36,0.03);">
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24;">03.07</span>
-        <div>
-          <div style="font-size: 18px; font-weight: 700; color: #e8ecf4; letter-spacing: 0.3px; margin-bottom: 6px;">טיסה קבוצתית: תל אביב → לרנקה</div>
-          <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">סיכום הטיסה המשותפת של סוף השבוע — 12 משתתפים, מזג אוויר מאתגר ונחיתות מרשימות. הטיסה הבאה מתואמת בקבוצה.</div>
-        </div>
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; border: 1px solid #2a3654; border-radius: 4px; padding: 4px 10px; text-align: center; height: fit-content; letter-spacing: 1px;">הסתיים</span>
+      <!-- news items will be inserted here -->
+      <div id="news-container" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
+        <span style="color: #64748b;">⏳ טוען חדשות...</span>
       </div>
     </div>
   </div>
@@ -320,6 +298,99 @@
     <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">DOCTOR SIMULATOR © 2026 — ISRAEL FLIGHT SIM COMMUNITY</div>
   </div>
 </footer>
+
+<script>
+async function fetchAndDisplayNews() {
+  try {
+    const response = await fetch('/api/news?limit=10');
+    const data = await response.json();
+
+    if (!data.success || !data.news) {
+      document.getElementById('news-container').innerHTML =
+        '<span style="color: #94a3b8;">לא נמצאו חדשות עדיין. אנחנו סורקים RSS feeds...</span>';
+      return;
+    }
+
+    if (data.news.length === 0) {
+      document.getElementById('news-container').innerHTML =
+        '<span style="color: #94a3b8;">המתן לעדכון חדשות ראשוני...</span>';
+      return;
+    }
+
+    // Format date
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      return `${day}.${month}`;
+    }
+
+    // Get status color
+    function getStatusColor(publishedAt) {
+      const now = new Date();
+      const pubDate = new Date(publishedAt);
+      const hoursAgo = (now - pubDate) / (1000 * 60 * 60);
+
+      if (hoursAgo < 1) return '#10b981';
+      if (hoursAgo < 6) return '#fbbf24';
+      return '#64748b';
+    }
+
+    // Get status text
+    function getStatusText(publishedAt) {
+      const now = new Date();
+      const pubDate = new Date(publishedAt);
+      const hoursAgo = (now - pubDate) / (1000 * 60 * 60);
+
+      if (hoursAgo < 1) return 'חדש';
+      if (hoursAgo < 6) return 'פעיל';
+      return 'ישן';
+    }
+
+    // Build HTML
+    let html = '';
+    data.news.forEach((item, index) => {
+      const statusColor = getStatusColor(item.publishedAt);
+      const statusText = getStatusText(item.publishedAt);
+      const formattedDate = formatDate(item.publishedAt);
+
+      html += `
+        <a href="${item.link}" target="_blank" rel="noopener" style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 22px 28px; border-bottom: 1px solid #10182e; align-items: start; transition: background 0.2s ease; color: inherit; text-decoration: none; ${index === data.news.length - 1 ? 'border-bottom: none;' : ''}" style-hover="background: rgba(251,191,36,0.03);">
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24;">${formattedDate}</span>
+          <div>
+            <div style="font-size: 18px; font-weight: 700; color: #e8ecf4; letter-spacing: 0.3px; margin-bottom: 6px;">${item.title}</div>
+            <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">${item.description}...</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+            <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: ${statusColor}; border: 1px solid rgba(${statusColor === '#10b981' ? '16,185,129' : statusColor === '#fbbf24' ? '251,191,36' : '100,116,139'},0.3); background: rgba(${statusColor === '#10b981' ? '16,185,129' : statusColor === '#fbbf24' ? '251,191,36' : '100,116,139'},0.08); border-radius: 4px; padding: 4px 10px; text-align: center; height: fit-content; letter-spacing: 1px; white-space: nowrap;">${statusText}</span>
+            <span style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: #64748b; letter-spacing: 1px;">${item.source}</span>
+          </div>
+        </a>
+      `;
+    });
+
+    document.getElementById('news-container').innerHTML = html;
+  } catch (error) {
+    console.error('Error fetching news:', error);
+    document.getElementById('news-container').innerHTML =
+      '<span style="color: #ef4444;">שגיאה בטעינת חדשות</span>';
+  }
+}
+
+// Fetch news on page load
+fetchAndDisplayNews();
+
+// Poll for new news every 60 seconds
+setInterval(fetchAndDisplayNews, 60000);
+
+// Also allow manual refresh
+window.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'r') {
+    console.log('Manually refreshing news...');
+    fetchAndDisplayNews();
+  }
+});
+</script>
 
 </body>
 </html>
