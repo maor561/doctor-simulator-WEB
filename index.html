@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>דוקטור סימולטור — קהילת הסימולציה של ישראל</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    html { direction: rtl; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #060a18;
+      color: #e8ecf4;
+      font-family: 'Heebo', 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+    * { box-sizing: border-box; }
+    a { color: #3b82f6; text-decoration: none; }
+    a:hover { color: #60a5fa; }
+    @keyframes dashMove {
+      to { stroke-dashoffset: -400; }
+    }
+    @keyframes tickerMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(50%); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes blinkCursor {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    @keyframes planeFly {
+      0% { transform: translateX(110vw) translateY(0) rotate(0deg); }
+      100% { transform: translateX(-15vw) translateY(-60px) rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ TICKER ═══ -->
+<div style="background: #0b1226; border-bottom: 1px solid #1c2540; overflow: hidden; white-space: nowrap; direction: ltr;">
+  <div style="display: inline-flex; gap: 0; animation: tickerMove 40s linear infinite; will-change: transform;">
+    <span style="font-family: 'Space Grotesk', monospace; font-size: 13px; color: #fbbf24; letter-spacing: 1px; padding: 9px 0; direction: rtl; display: inline-block;">✈ טיסה משותפת הערב 21:00 — LLBG ✦ עדכון חדש ל-MSFS 2024 ✦ תחרות נחיתות יולי נפתחה להרשמה ✦ 4 קבוצות וואטסאפ פעילות ✦ כלי חדש: Flight Target ✦&nbsp;</span>
+    <span style="font-family: 'Space Grotesk', monospace; font-size: 13px; color: #fbbf24; letter-spacing: 1px; padding: 9px 0; direction: rtl; display: inline-block;">✈ טיסה משותפת הערב 21:00 — LLBG ✦ עדכון חדש ל-MSFS 2024 ✦ תחרות נחיתות יולי נפתחה להרשמה ✦ 4 קבוצות וואטסאפ פעילות ✦ כלי חדש: Flight Target ✦&nbsp;</span>
+  </div>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header style="position: sticky; top: 0; z-index: 90; background: rgba(6,10,24,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid #1c2540;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; background: white;">
+        <img src="uploads/logo.png" alt="Doctor Simulator" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      </div>
+      <div>
+        <div style="font-weight: 900; font-size: 17px; letter-spacing: -0.3px;">דוקטור סימולטור</div>
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: #64748b; letter-spacing: 2px;">Let your dream fly</div>
+      </div>
+    </div>
+    <nav style="display: flex; gap: 28px; align-items: center;">
+      <a href="#board" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">לוח חדשות</a>
+      <a href="#tools" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">כלים</a>
+      <a href="#gates" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">קבוצות</a>
+      <a href="#gates" style="background: #3b82f6; color: #fff; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 12px rgba(59,130,246,0.35);" style-hover="background: #2563eb; color: #fff;">הצטרפו לקהילה</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section style="position: relative; overflow: hidden; padding: 110px 32px 90px; background: radial-gradient(ellipse 900px 500px at 75% -10%, rgba(29,78,216,0.22), transparent), radial-gradient(ellipse 600px 400px at 15% 110%, rgba(251,191,36,0.06), transparent);">
+  <!-- flight path svg -->
+  <svg viewBox="0 0 1200 420" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none;" preserveAspectRatio="xMidYMid slice">
+    <path d="M -50 340 C 250 320, 420 180, 640 160 S 1080 80, 1280 40" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="8 10" style="animation: dashMove 12s linear infinite;"></path>
+    <path d="M -50 400 C 300 390, 500 300, 750 270 S 1100 210, 1280 190" fill="none" stroke="#1c2540" stroke-width="1.5" stroke-dasharray="4 8"></path>
+    <circle cx="640" cy="160" r="4" fill="#fbbf24"></circle>
+    <circle cx="640" cy="160" r="10" fill="none" stroke="#fbbf24" stroke-width="1" style="animation: glowPulse 2.5s ease infinite;"></circle>
+    <circle cx="250" cy="305" r="3" fill="#3b82f6"></circle>
+    <circle cx="1020" cy="93" r="3" fill="#3b82f6"></circle>
+  </svg>
+
+  <div style="max-width: 1240px; margin: 0 auto; position: relative;">
+    <div style="max-width: 720px; animation: fadeUp 0.7s ease both;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #2a3654; background: rgba(28,37,64,0.5); border-radius: 100px; padding: 6px 16px; margin-bottom: 28px;">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; animation: glowPulse 2s ease infinite;"></span>
+        <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">הקהילה פעילה עכשיו — מוזמנים להצטרף</span>
+      </div>
+      <h1 style="font-size: clamp(42px, 6.5vw, 78px); font-weight: 900; line-height: 1.05; margin: 0 0 24px; letter-spacing: -2px;">
+        הבית של חובבי<br>
+        <span style="background: linear-gradient(120deg, #60a5fa, #3b82f6 45%, #fbbf24); -webkit-background-clip: text; background-clip: text; color: transparent;">הסימולציה בישראל</span>
+      </h1>
+      <p style="font-size: 19px; color: #94a3b8; line-height: 1.7; margin: 0 0 40px; max-width: 560px; font-weight: 300;">
+        טיסות משותפות, עזרה טכנית, כלים שנבנו במיוחד עבור הקהילה — וחדשות תעופה טריות. הכל במקום אחד.
+      </p>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="#gates" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; padding: 15px 36px; border-radius: 8px; font-size: 16px; font-weight: 700; box-shadow: 0 4px 24px rgba(59,130,246,0.4); transition: transform 0.2s ease;" style-hover="transform: translateY(-2px); color: #fff;">💬 הצטרפו לוואטסאפ</a>
+        <a href="#tools" style="border: 1px solid #2a3654; color: #e8ecf4; padding: 15px 36px; border-radius: 8px; font-size: 16px; font-weight: 500; transition: border-color 0.2s ease;" style-hover="border-color: #3b82f6; color: #e8ecf4;">🛠️ לכלים של הקהילה</a>
+      </div>
+    </div>
+
+    <!-- stats strip -->
+    <div style="display: flex; gap: 0; margin-top: 80px; border: 1px solid #1c2540; border-radius: 12px; background: rgba(11,18,38,0.7); backdrop-filter: blur(8px); overflow: hidden; animation: fadeUp 0.7s 0.2s ease both;">
+      <div style="flex: 1; padding: 24px 32px; border-left: 1px solid #1c2540;">
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 34px; font-weight: 700; color: #fbbf24;">4</div>
+        <div style="font-size: 13px; color: #64748b; margin-top: 2px;">קבוצות וואטסאפ פעילות</div>
+      </div>
+      <div style="flex: 1; padding: 24px 32px; border-left: 1px solid #1c2540;">
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 34px; font-weight: 700; color: #60a5fa;">2</div>
+        <div style="font-size: 13px; color: #64748b; margin-top: 2px;">כלים שפותחו לקהילה</div>
+      </div>
+      <div style="flex: 1; padding: 24px 32px; border-left: 1px solid #1c2540;">
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 34px; font-weight: 700; color: #10b981;">∞</div>
+        <div style="font-size: 13px; color: #64748b; margin-top: 2px;">טיסות משותפות</div>
+      </div>
+      <div style="flex: 1; padding: 24px 32px;">
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 34px; font-weight: 700; color: #8b5cf6;">24/7</div>
+        <div style="font-size: 13px; color: #64748b; margin-top: 2px;">קהילה שתמיד שם בשבילך</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEPARTURES BOARD — NEWS ═══ -->
+<section id="board" style="padding: 100px 32px; background: #04070f; border-top: 1px solid #1c2540; border-bottom: 1px solid #1c2540;">
+  <div style="max-width: 1240px; margin: 0 auto;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+      <h2 style="font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px;">📰 לוח חדשות תעופה</h2>
+      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; letter-spacing: 3px;">AVIATION NEWS — DEPARTURES</span>
+    </div>
+    <p style="color: #64748b; font-size: 15px; margin: 0 0 40px;">מתעדכן כמה פעמים בשבוע · חדשות מעולם הסימולציה והתעופה האמיתית</p>
+
+    <!-- board -->
+    <div style="background: #070b16; border: 1px solid #1c2540; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);">
+      <!-- board header row -->
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 14px 28px; background: #0b1226; border-bottom: 1px solid #1c2540;">
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">תאריך</span>
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">כותרת</span>
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">סטטוס</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 22px 28px; border-bottom: 1px solid #10182e; align-items: start; transition: background 0.2s ease;" style-hover="background: rgba(251,191,36,0.03);">
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24;">10.07</span>
+        <div>
+          <div style="font-size: 18px; font-weight: 700; color: #fbbf24; letter-spacing: 0.3px; margin-bottom: 6px;">עדכון גדול ל-MSFS 2024 — שיפורי ביצועים דרמטיים</div>
+          <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">מיקרוסופט שחררה עדכון עם שיפור משמעותי בזמני טעינה, תיקוני CTD ותוספת שדות תעופה מעודכנים באזורנו.</div>
+        </div>
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #10b981; border: 1px solid rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); border-radius: 4px; padding: 4px 10px; text-align: center; height: fit-content; letter-spacing: 1px;">חדש<span style="animation: blinkCursor 1s step-end infinite;">_</span></span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 22px 28px; border-bottom: 1px solid #10182e; align-items: start; transition: background 0.2s ease;" style-hover="background: rgba(251,191,36,0.03);">
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24;">07.07</span>
+        <div>
+          <div style="font-size: 18px; font-weight: 700; color: #e8ecf4; letter-spacing: 0.3px; margin-bottom: 6px;">תחרות נחיתות יולי — ההרשמה נפתחה</div>
+          <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">מי ינחת הכי חלק? תחרות חודשית עם דירוג נחיתות. פרטים והרשמה בקבוצה הכללית.</div>
+        </div>
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); background: rgba(251,191,36,0.08); border-radius: 4px; padding: 4px 10px; text-align: center; height: fit-content; letter-spacing: 1px;">פעיל</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 22px 28px; align-items: start; transition: background 0.2s ease;" style-hover="background: rgba(251,191,36,0.03);">
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24;">03.07</span>
+        <div>
+          <div style="font-size: 18px; font-weight: 700; color: #e8ecf4; letter-spacing: 0.3px; margin-bottom: 6px;">טיסה קבוצתית: תל אביב → לרנקה</div>
+          <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">סיכום הטיסה המשותפת של סוף השבוע — 12 משתתפים, מזג אוויר מאתגר ונחיתות מרשימות. הטיסה הבאה מתואמת בקבוצה.</div>
+        </div>
+        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; border: 1px solid #2a3654; border-radius: 4px; padding: 4px 10px; text-align: center; height: fit-content; letter-spacing: 1px;">הסתיים</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOOLS ═══ -->
+<section id="tools" style="padding: 100px 32px; background: #060a18;">
+  <div style="max-width: 1240px; margin: 0 auto;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+      <h2 style="font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px;">🛠️ כלים שנבנו לקהילה</h2>
+      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; letter-spacing: 3px;">COMMUNITY TOOLS</span>
+    </div>
+    <p style="color: #64748b; font-size: 15px; margin: 0 0 48px;">פותחו בהתנדבות, מתוך אהבה לתחום — חינם לכל חברי הקהילה</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+      <a href="https://flight-target.vercel.app/" target="_blank" rel="noopener" style="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px; padding: 40px; background: linear-gradient(160deg, rgba(29,78,216,0.12), rgba(11,18,38,0.4) 55%); color: inherit; transition: all 0.25s ease; overflow: hidden;" style-hover="border-color: #3b82f6; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(59,130,246,0.15); color: inherit;">
+        <div style="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px; font-weight: 700; color: rgba(59,130,246,0.12); line-height: 1;">01</div>
+        <div style="font-size: 44px; margin-bottom: 20px;">🎯</div>
+        <h3 style="font-size: 26px; font-weight: 900; margin: 0 0 4px; letter-spacing: -0.5px;">Flight Target</h3>
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #3b82f6; letter-spacing: 2px; margin-bottom: 16px;">FLIGHT-TARGET.VERCEL.APP</div>
+        <p style="font-size: 15px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px; font-weight: 300;">בחירת יעדי טיסה חכמה&nbsp;<br>לא יודעים לאן לטוס?<br>כנסו ותראו את מה שאחרים מפספסים<br>כל הטיסות הלא שגרתיות מנתב"ג</p>
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: #60a5fa;">כניסה<span style="font-family: &quot;Space Grotesk&quot;, monospace;">←</span></span>
+      </a>
+
+      <a href="https://doctor-simulator-flights.vercel.app/" target="_blank" rel="noopener" style="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px; padding: 40px; background: linear-gradient(160deg, rgba(16,185,129,0.1), rgba(11,18,38,0.4) 55%); color: inherit; transition: all 0.25s ease; overflow: hidden;" style-hover="border-color: #10b981; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(16,185,129,0.12); color: inherit;">
+        <div style="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px; font-weight: 700; color: rgba(16,185,129,0.12); line-height: 1;">02</div>
+        <div style="font-size: 44px; margin-bottom: 20px;">📊</div>
+        <h3 style="font-size: 26px; font-weight: 900; margin: 0 0 4px; letter-spacing: -0.5px;">Doctor Simulator Flights</h3>
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #10b981; letter-spacing: 2px; margin-bottom: 16px;">DOCTOR-SIMULATOR-FLIGHTS.VERCEL.APP</div>
+        <p style="font-size: 15px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px; font-weight: 300;">פרוייקט טיול מסביב לעולם<br>הצטרפו אלינו לטיסה מסביב לעולם&nbsp;<br>כל הפרטים בפנים&nbsp;</p>
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: #34d399;">כניסה<span style="font-family: &quot;Space Grotesk&quot;, monospace;">←</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GATES — WHATSAPP GROUPS ═══ -->
+<section id="gates" style="padding: 100px 32px 120px; background: #04070f; border-top: 1px solid #1c2540;">
+  <div style="max-width: 1240px; margin: 0 auto;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+      <h2 style="font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px;">🎫 כרטיס העלייה שלכם</h2>
+      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; letter-spacing: 3px;">BOARDING — WHATSAPP GATES</span>
+    </div>
+    <p style="color: #64748b; font-size: 15px; margin: 0 0 48px;">בחרו שער — כל קבוצה היא עולם: עזרה הדדית, תיאום טיסות משותפות ותמיכה טכנית</p>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+
+      <!-- boarding pass: general -->
+      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #3b82f6; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(59,130,246,0.12); color: inherit;">
+        <div style="width: 90px; background: linear-gradient(180deg, #1d4ed8, #3b82f6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">GATE</span>
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 26px; font-weight: 700; color: #fff;">A1</span>
+        </div>
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654; position: relative;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span style="font-size: 22px;">👥</span>
+            <h3 style="font-size: 19px; font-weight: 900; margin: 0;">הקבוצה הכללית</h3>
+          </div>
+          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">הלב של הקהילה — שיחות, עזרה הדדית, תיאום טיסות משותפות וכל מה שביניהם.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 14px; font-weight: 700; color: #60a5fa;">הצטרפו לקבוצה ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- boarding pass: buy/sell -->
+      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #f97316; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(249,115,22,0.12); color: inherit;">
+        <div style="width: 90px; background: linear-gradient(180deg, #c2410c, #f97316); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">GATE</span>
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 26px; font-weight: 700; color: #fff;">B2</span>
+        </div>
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span style="font-size: 22px;">🎧</span>
+            <h3 style="font-size: 19px; font-weight: 900; margin: 0;">קנייה ומכירה</h3>
+          </div>
+          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">יד שנייה מטייסים — ג'ויסטיקים, הגאים, מסכים וכל ציוד סימולציה. בלי עמלות, בין חברים.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 14px; font-weight: 700; color: #fb923c;">הצטרפו לקבוצה ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- boarding pass: DCS -->
+      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #8b5cf6; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(139,92,246,0.12); color: inherit;">
+        <div style="width: 90px; background: linear-gradient(180deg, #6d28d9, #8b5cf6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">GATE</span>
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 26px; font-weight: 700; color: #fff;">C3</span>
+        </div>
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span style="font-size: 22px;">🛦</span>
+            <h3 style="font-size: 19px; font-weight: 900; margin: 0;">DCS World</h3>
+          </div>
+          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">סימולציית קרב — משימות משותפות, הדרכות על מטוסי קרב וטיסות מבנה מתואמות.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 14px; font-weight: 700; color: #a78bfa;">הצטרפו לקבוצה ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- boarding pass: CVFR -->
+      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #10b981; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(16,185,129,0.12); color: inherit;">
+        <div style="width: 90px; background: linear-gradient(180deg, #047857, #10b981); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">GATE</span>
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 26px; font-weight: 700; color: #fff;">D4</span>
+        </div>
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span style="font-size: 22px;">🗺️</span>
+            <h3 style="font-size: 19px; font-weight: 900; margin: 0;">CVFR</h3>
+          </div>
+          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">טיסות ראייה בשמי הארץ והעולם — נתיבי CVFR אמיתיים, נקודות דיווח ותרגול קשר כמו בחיים.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 14px; font-weight: 700; color: #34d399;">הצטרפו לקבוצה ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section style="padding: 110px 32px; background: radial-gradient(ellipse 700px 400px at 50% 120%, rgba(29,78,216,0.25), transparent), #060a18; border-top: 1px solid #1c2540; text-align: center; position: relative; overflow: hidden;">
+  <div style="position: absolute; top: 40px; font-size: 28px; opacity: 0.85; animation: planeFly 18s linear infinite; left: 0;">✈️</div>
+  <div style="max-width: 640px; margin: 0 auto; position: relative;">
+    <div style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #fbbf24; letter-spacing: 4px; margin-bottom: 20px;">FINAL BOARDING CALL</div>
+    <h2 style="font-size: clamp(32px, 4.5vw, 52px); font-weight: 900; margin: 0 0 20px; letter-spacing: -1.5px; line-height: 1.15;">הטיסה שלכם ממריאה.<br>אתם עולים?</h2>
+    <p style="font-size: 17px; color: #94a3b8; margin: 0 0 40px; font-weight: 300; line-height: 1.7;">מצטרפים לקבוצה, מכירים את החברים, וממריאים יחד — כבר הערב.</p>
+    <a href="#gates" style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; padding: 17px 48px; border-radius: 8px; font-size: 17px; font-weight: 700; box-shadow: 0 8px 32px rgba(59,130,246,0.45); transition: transform 0.2s ease;" style-hover="transform: translateY(-2px); color: #fff;">💬 הצטרפו לקהילה עכשיו</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer style="border-top: 1px solid #1c2540; padding: 40px 32px; background: #04070f;">
+  <div style="max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 18px;">✈️</span>
+      <span style="font-weight: 700; font-size: 14px;">דוקטור סימולטור</span>
+    </div>
+    <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">DOCTOR SIMULATOR © 2026 — ISRAEL FLIGHT SIM COMMUNITY</div>
+  </div>
+</footer>
+
+</body>
+</html>

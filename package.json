@@ -1,0 +1,18 @@
+{
+  "name": "doctor-simulator-web",
+  "version": "1.0.0",
+  "description": "Landing page for Doctor Simulator - Israel Flight Simulation Community",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000 -c-1",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": [
+    "flight-simulation",
+    "msfs",
+    "israel",
+    "community"
+  ],
+  "author": "Maor",
+  "license": "MIT"
+}
