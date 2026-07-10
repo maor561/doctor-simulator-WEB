@@ -16,9 +16,5 @@
       "path": "/api/cron",
       "schedule": "0 15 * * *"
     }
-  ],
-  "env": {
-    "MONGODB_URI": "@mongodb_uri",
-    "CRON_SECRET": "@cron_secret"
-  }
+  ]
 }
