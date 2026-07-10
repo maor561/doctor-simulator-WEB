@@ -347,23 +347,60 @@ async function fetchAndDisplayNews() {
       return 'ישן';
     }
 
+    // Add hover styles
+    const style = document.createElement('style');
+    style.textContent = `
+      .news-item {
+        display: grid;
+        grid-template-columns: 110px 1fr 130px;
+        gap: 16px;
+        padding: 22px 28px;
+        border-bottom: 1px solid #10182e;
+        align-items: start;
+        transition: background 0.2s ease;
+        color: inherit;
+        text-decoration: none;
+      }
+      .news-item:hover {
+        background: rgba(251, 191, 36, 0.03);
+      }
+      .news-item:last-child {
+        border-bottom: none;
+      }
+    `;
+    document.head.appendChild(style);
+
     // Build HTML
     let html = '';
-    data.news.forEach((item, index) => {
-      const statusColor = getStatusColor(item.publishedAt);
+    data.news.forEach((item) => {
       const statusText = getStatusText(item.publishedAt);
       const formattedDate = formatDate(item.publishedAt);
+      const hoursAgo = (new Date() - new Date(item.publishedAt)) / (1000 * 60 * 60);
+
+      let statusBg = 'rgba(100, 116, 139, 0.08)';
+      let statusBorder = 'rgba(100, 116, 139, 0.3)';
+      let statusTextColor = '#64748b';
+
+      if (hoursAgo < 1) {
+        statusBg = 'rgba(16, 185, 129, 0.08)';
+        statusBorder = 'rgba(16, 185, 129, 0.3)';
+        statusTextColor = '#10b981';
+      } else if (hoursAgo < 6) {
+        statusBg = 'rgba(251, 191, 36, 0.08)';
+        statusBorder = 'rgba(251, 191, 36, 0.3)';
+        statusTextColor = '#fbbf24';
+      }
 
       html += `
-        <a href="${item.link}" target="_blank" rel="noopener" style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 22px 28px; border-bottom: 1px solid #10182e; align-items: start; transition: background 0.2s ease; color: inherit; text-decoration: none; ${index === data.news.length - 1 ? 'border-bottom: none;' : ''}" style-hover="background: rgba(251,191,36,0.03);">
-          <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24;">${formattedDate}</span>
+        <a href="${item.link}" target="_blank" rel="noopener" class="news-item">
+          <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24; white-space: nowrap;">${formattedDate}</span>
           <div>
-            <div style="font-size: 18px; font-weight: 700; color: #e8ecf4; letter-spacing: 0.3px; margin-bottom: 6px;">${item.title}</div>
-            <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">${item.description}...</div>
+            <div style="font-size: 18px; font-weight: 700; color: #e8ecf4; letter-spacing: 0.3px; margin-bottom: 6px; word-break: break-word;">${item.title}</div>
+            <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">${item.description}</div>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
-            <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: ${statusColor}; border: 1px solid rgba(${statusColor === '#10b981' ? '16,185,129' : statusColor === '#fbbf24' ? '251,191,36' : '100,116,139'},0.3); background: rgba(${statusColor === '#10b981' ? '16,185,129' : statusColor === '#fbbf24' ? '251,191,36' : '100,116,139'},0.08); border-radius: 4px; padding: 4px 10px; text-align: center; height: fit-content; letter-spacing: 1px; white-space: nowrap;">${statusText}</span>
-            <span style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: #64748b; letter-spacing: 1px;">${item.source}</span>
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+            <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: ${statusTextColor}; border: 1px solid ${statusBorder}; background: ${statusBg}; border-radius: 4px; padding: 4px 10px; text-align: center; letter-spacing: 1px; white-space: nowrap;">${statusText}</span>
+            <span style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: #64748b; letter-spacing: 1px; white-space: nowrap;">${item.source}</span>
           </div>
         </a>
       `;
