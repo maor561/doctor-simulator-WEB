@@ -43,6 +43,9 @@
       0% { transform: translateX(110vw) translateY(0) rotate(0deg); }
       100% { transform: translateX(-15vw) translateY(-60px) rotate(0deg); }
     }
+    #news-container {
+      display: contents;
+    }
     .news-item {
       display: grid !important;
       grid-template-columns: 110px 1fr 150px !important;
@@ -50,9 +53,10 @@
       padding: 22px 28px !important;
       border-bottom: 1px solid #10182e !important;
       align-items: start !important;
-      transition: background 0.2s ease !important;
+      transition: all 0.2s ease !important;
       color: inherit !important;
       text-decoration: none !important;
+      width: 100% !important;
     }
     .news-item:hover {
       background: rgba(251, 191, 36, 0.03) !important;
