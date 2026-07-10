@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>דוקטור סימולטור — Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { direction: rtl; }
+    body {
+      background: #060a18;
+      color: #e8ecf4;
+      font-family: 'Heebo', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .login-section {
+      background: #0b1226;
+      border: 1px solid #1c2540;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .admin-section {
+      background: #0b1226;
+      border: 1px solid #1c2540;
+      border-radius: 12px;
+      padding: 40px;
+      display: none;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #fbbf24;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: right;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input[type="password"],
+    input[type="text"],
+    input[type="url"] {
+      width: 100%;
+      padding: 12px 16px;
+      background: #1c2540;
+      border: 1px solid #2a3654;
+      border-radius: 8px;
+      color: #e8ecf4;
+      font-family: 'Heebo', sans-serif;
+      font-size: 14px;
+    }
+
+    input[type="password"]:focus,
+    input[type="text"]:focus,
+    input[type="url"]:focus {
+      outline: none;
+      border-color: #3b82f6;
+      background: #0f172a;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Heebo', sans-serif;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid #10b981;
+      color: #86efac;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .whatsapp-group {
+      background: #1c2540;
+      border: 1px solid #2a3654;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .whatsapp-group h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #60a5fa;
+    }
+
+    .logout-btn {
+      background: #64748b;
+      margin-top: 20px;
+    }
+
+    .logout-btn:hover {
+      background: #475569;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Login Section -->
+    <div class="login-section" id="loginSection">
+      <h1>🔐 Admin Panel</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>סיסמה:</label>
+          <input type="password" id="password" placeholder="הקלד סיסמה" required>
+        </div>
+        <button type="submit">כניסה</button>
+      </form>
+      <div id="loginError" class="error" style="display: none;"></div>
+    </div>
+
+    <!-- Admin Section -->
+    <div class="admin-section" id="adminSection">
+      <h1>✏️ עריכת קבוצות WhatsApp</h1>
+
+      <div id="successMessage" class="success" style="display: none;">
+        שמור בהצלחה! ✅
+      </div>
+
+      <form id="adminForm">
+        <div class="whatsapp-group">
+          <h3>A1 — הקבוצה הכללית 👥</h3>
+          <div class="form-group">
+            <label>לינק WhatsApp:</label>
+            <input type="url" class="group-link" data-group="general" placeholder="https://wa.me/..." required>
+          </div>
+        </div>
+
+        <div class="whatsapp-group">
+          <h3>B2 — קנייה ומכירה 🎧</h3>
+          <div class="form-group">
+            <label>לינק WhatsApp:</label>
+            <input type="url" class="group-link" data-group="buysell" placeholder="https://wa.me/..." required>
+          </div>
+        </div>
+
+        <div class="whatsapp-group">
+          <h3>C3 — DCS World 🛦</h3>
+          <div class="form-group">
+            <label>לינק WhatsApp:</label>
+            <input type="url" class="group-link" data-group="dcs" placeholder="https://wa.me/..." required>
+          </div>
+        </div>
+
+        <div class="whatsapp-group">
+          <h3>D4 — CVFR 🗺️</h3>
+          <div class="form-group">
+            <label>לינק WhatsApp:</label>
+            <input type="url" class="group-link" data-group="cvfr" placeholder="https://wa.me/..." required>
+          </div>
+        </div>
+
+        <button type="submit">💾 שמור שינויים</button>
+        <button type="button" class="logout-btn" onclick="logout()">🚪 התנתקות</button>
+      </form>
+
+      <div class="status">
+        <p>שומר בזמן אמת...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PASSWORD = 'San41525';
+
+    // Check if logged in
+    window.addEventListener('load', () => {
+      if (sessionStorage.getItem('adminLogged')) {
+        showAdminPanel();
+        loadGroupLinks();
+      }
+    });
+
+    // Login
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const pwd = document.getElementById('password').value;
+      const error = document.getElementById('loginError');
+
+      if (pwd === PASSWORD) {
+        sessionStorage.setItem('adminLogged', 'true');
+        document.getElementById('password').value = '';
+        error.style.display = 'none';
+        showAdminPanel();
+        loadGroupLinks();
+      } else {
+        error.textContent = '❌ סיסמה שגויה';
+        error.style.display = 'block';
+      }
+    });
+
+    // Show admin panel
+    function showAdminPanel() {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('adminSection').style.display = 'block';
+    }
+
+    // Logout
+    function logout() {
+      sessionStorage.removeItem('adminLogged');
+      document.getElementById('loginSection').style.display = 'block';
+      document.getElementById('adminSection').style.display = 'none';
+      document.getElementById('password').value = '';
+    }
+
+    // Load group links
+    async function loadGroupLinks() {
+      try {
+        const res = await fetch('/api/admin-config');
+        if (!res.ok) throw new Error('Failed to load');
+
+        const data = await res.json();
+        if (data.links) {
+          Object.entries(data.links).forEach(([group, link]) => {
+            const input = document.querySelector(`[data-group="${group}"]`);
+            if (input) input.value = link;
+          });
+        }
+      } catch (error) {
+        console.error('Error loading links:', error);
+      }
+    }
+
+    // Save group links
+    document.getElementById('adminForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const links = {};
+      document.querySelectorAll('.group-link').forEach(input => {
+        links[input.dataset.group] = input.value;
+      });
+
+      try {
+        const res = await fetch('/api/admin-config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ links })
+        });
+
+        if (res.ok) {
+          const success = document.getElementById('successMessage');
+          success.style.display = 'block';
+          setTimeout(() => {
+            success.style.display = 'none';
+          }, 3000);
+        }
+      } catch (error) {
+        console.error('Error saving:', error);
+      }
+    });
+  </script>
+</body>
+</html>

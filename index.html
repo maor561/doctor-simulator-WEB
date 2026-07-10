@@ -549,6 +549,41 @@ window.addEventListener('keydown', (e) => {
     fetchAndDisplayNews();
   }
 });
+
+// Load WhatsApp group links from admin config
+async function loadWhatsAppLinks() {
+  try {
+    const res = await fetch('/api/admin-config');
+    if (!res.ok) throw new Error('Failed to load');
+
+    const data = await res.json();
+    if (data.links) {
+      const linkMap = {
+        general: 'a[href="https://wa.me/"]:has(+ div:has(h3:contains("הקבוצה הכללית")))',
+        buysell: 'a[href="https://wa.me/"]:has(+ div:has(h3:contains("קנייה ומכירה")))',
+        dcs: 'a[href="https://wa.me/"]:has(+ div:has(h3:contains("DCS")))',
+        cvfr: 'a[href="https://wa.me/"]:has(+ div:has(h3:contains("CVFR")))'
+      };
+
+      // Simple approach - find all wa.me links and update them
+      const links = document.querySelectorAll('a[href="https://wa.me/"]');
+      let index = 0;
+      const groups = ['general', 'buysell', 'dcs', 'cvfr'];
+
+      links.forEach((link, i) => {
+        const group = groups[i];
+        if (group && data.links[group]) {
+          link.href = data.links[group];
+        }
+      });
+    }
+  } catch (error) {
+    console.error('Error loading WhatsApp links:', error);
+  }
+}
+
+// Load links on page load
+loadWhatsAppLinks();
 </script>
 
 </body>
