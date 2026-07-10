@@ -44,7 +44,7 @@
       100% { transform: translateX(-15vw) translateY(-60px) rotate(0deg); }
     }
     #news-container {
-      display: contents;
+      display: block !important;
     }
     .news-item {
       display: grid !important;
@@ -57,11 +57,12 @@
       color: inherit !important;
       text-decoration: none !important;
       width: 100% !important;
+      background: transparent !important;
     }
     .news-item:hover {
       background: rgba(251, 191, 36, 0.03) !important;
     }
-    .news-item:last-child {
+    .news-item:last-of-type {
       border-bottom: none !important;
     }
   </style>
