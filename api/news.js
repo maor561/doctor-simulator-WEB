@@ -1,10 +1,6 @@
-import { getLatestNews } from '../lib/db.js';
-
 export default async function handler(req, res) {
-  // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -15,25 +11,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const limit = parseInt(req.query.limit) || 10;
-    const news = await getLatestNews(limit);
-
-    res.setHeader('Cache-Control', 'max-age=60');
+    // For now, return placeholder until Cron updates DB
     return res.status(200).json({
       success: true,
-      count: news.length,
-      news: news.map(item => ({
-        _id: item._id.toString(),
-        source: item.source,
-        title: item.title,
-        description: item.description,
-        link: item.link,
-        publishedAt: item.publishedAt,
-        image: item.image
-      }))
+      count: 0,
+      news: [],
+      message: 'Waiting for first RSS fetch (runs daily at 15:00 UTC)'
     });
   } catch (error) {
-    console.error('Error fetching news:', error);
+    console.error('Error:', error);
     return res.status(500).json({
       success: false,
       error: error.message
