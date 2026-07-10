@@ -1,6 +1,20 @@
 {
-  "outputDirectory": ".",
-  "buildCommand": "echo 'Static site with API routes'",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
   "crons": [
     {
       "path": "/api/cron",
