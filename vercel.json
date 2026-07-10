@@ -1,7 +1,5 @@
 {
-  "name": "doctor-simulator-web",
   "buildCommand": "echo 'No build needed'",
   "outputDirectory": ".",
-  "framework": "static",
-  "env": []
+  "framework": "static"
 }
