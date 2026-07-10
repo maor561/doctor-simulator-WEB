@@ -71,70 +71,121 @@
     }
     /* ═════ PROFESSIONAL MOBILE-FIRST RESPONSIVE DESIGN ═════ */
 
-    /* MOBILE FIRST (Base styles for mobile) */
-    header { padding: 16px !important; }
-    header > div { flex-direction: column !important; }
-    nav { flex-direction: column !important; gap: 8px !important; }
-    nav a { padding: 12px 16px !important; border-radius: 8px !important; }
+    /* Mobile menu toggle */
+    #mobile-menu-toggle { display: none; }
 
-    section { padding: 60px 16px !important; }
-    section h1 { font-size: clamp(24px, 6vw, 78px) !important; }
-    section h2 { font-size: clamp(22px, 5vw, 36px) !important; }
-    section p { font-size: 15px !important; line-height: 1.6 !important; }
+    /* MOBILE FIRST - Aggressive optimization */
+    header { padding: 12px 16px !important; }
+    header > div {
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      gap: 0 !important;
+    }
+    header > div > div:first-child {
+      gap: 8px !important;
+    }
+    header > div > div:first-child > div:first-child {
+      width: 36px !important;
+      height: 36px !important;
+    }
+    header > div > div:first-child > div:last-child > div:first-child {
+      font-size: 14px !important;
+    }
 
-    /* Buttons - Touch friendly 44px minimum */
-    a[style*="padding: 15px"], button {
-      padding: 12px 20px !important;
-      min-height: 44px !important;
-      display: inline-flex !important;
+    /* Hide nav on mobile, show hamburger */
+    nav {
+      display: none !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+      position: absolute !important;
+      top: 60px !important;
+      right: 0 !important;
+      left: 0 !important;
+      background: rgba(6,10,24,0.95) !important;
+      border-bottom: 1px solid #1c2540 !important;
+      padding: 12px 16px !important;
+      z-index: 80 !important;
+    }
+    nav.active { display: flex !important; }
+    nav a {
+      padding: 10px 12px !important;
+      border-radius: 6px !important;
+      font-size: 14px !important;
+      min-height: 40px !important;
+      display: flex !important;
       align-items: center !important;
-      justify-content: center !important;
-      font-size: 15px !important;
     }
 
-    /* News grid - single column mobile */
+    /* Ticker optimization */
+    div[style*="display: inline-flex; gap: 0; animation: tickerMove"] > span {
+      font-size: 11px !important;
+    }
+
+    section { padding: 48px 16px !important; }
+    section h1 { font-size: clamp(20px, 5.5vw, 78px) !important; }
+    section h2 { font-size: clamp(18px, 4.5vw, 36px) !important; }
+    section p { font-size: 14px !important; line-height: 1.5 !important; }
+
+    /* Buttons - Touch friendly */
+    a[style*="padding: 15px"], button {
+      padding: 10px 18px !important;
+      min-height: 40px !important;
+      font-size: 14px !important;
+    }
+
+    /* News grid - single column */
     .news-item {
-      grid-template-columns: 1fr !important;
-      gap: 12px !important;
-      padding: 16px !important;
+      grid-template-columns: 70px 1fr 80px !important;
+      gap: 10px !important;
+      padding: 12px 12px !important;
+    }
+    .news-item > span:first-child {
+      font-size: 11px !important;
     }
 
-    /* Grid layouts - single column */
+    /* Single column layouts */
     div[style*="grid-template-columns: 1fr 1fr"],
     div[style*="repeat(2, 1fr)"] {
       grid-template-columns: 1fr !important;
+      gap: 16px !important;
     }
 
-    /* Stats - stack vertically */
-    div[style*="display: flex; gap: 0"] {
-      flex-direction: column !important;
-      gap: 12px !important;
-    }
-
-    /* Boarding pass - flexbox adjustment */
+    /* Boarding pass - horizontal card */
     div[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid"] {
-      flex-direction: column !important;
+      flex-direction: row !important;
+      gap: 0 !important;
     }
     div[style*="width: 90px; background: linear-gradient"] {
-      width: 100% !important;
-      min-height: 80px !important;
+      width: 75px !important;
+      min-height: 75px !important;
+    }
+    div[style*="flex: 1; padding: 24px 28px"] {
+      padding: 12px 16px !important;
     }
 
-    /* TABLET (768px and up) */
+    /* Tablet (768px+) */
     @media (min-width: 768px) {
-      header > div { flex-direction: row !important; }
-      nav { flex-direction: row !important; gap: 16px !important; }
-      nav a { padding: 8px 16px !important; }
+      #mobile-menu-toggle { display: none !important; }
+      nav {
+        display: flex !important;
+        position: relative !important;
+        top: auto !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        gap: 20px !important;
+      }
+      nav a { padding: 8px 12px !important; }
 
+      header { padding: 16px 32px !important; }
       section { padding: 80px 32px !important; }
-      section h1 { font-size: clamp(32px, 7vw, 78px) !important; }
-      section h2 { font-size: clamp(28px, 5.5vw, 36px) !important; }
-      section p { font-size: 16px !important; }
+      section h1 { font-size: clamp(28px, 6.5vw, 78px) !important; }
+      section h2 { font-size: clamp(24px, 5vw, 36px) !important; }
 
       .news-item {
         grid-template-columns: 100px 1fr 120px !important;
         gap: 16px !important;
-        padding: 20px 24px !important;
+        padding: 16px 20px !important;
       }
 
       div[style*="grid-template-columns: 1fr 1fr"],
@@ -150,10 +201,12 @@
       }
     }
 
-    /* DESKTOP (1024px and up) */
+    /* Desktop (1024px+) */
     @media (min-width: 1024px) {
       header { padding: 18px 32px !important; }
       section { padding: 100px 32px !important; }
+      section h1 { font-size: clamp(42px, 7vw, 78px) !important; }
+      section h2 { font-size: clamp(32px, 5.5vw, 36px) !important; }
 
       .news-item {
         grid-template-columns: 110px 1fr 150px !important;
@@ -165,12 +218,6 @@
         padding: 15px 36px !important;
         font-size: 16px !important;
       }
-    }
-
-    /* LANDSCAPE phones (max-height: 500px) */
-    @media (max-height: 500px) {
-      section { padding: 40px 16px !important; }
-      section h1 { font-size: 24px !important; }
     }
   </style>
 </head>
@@ -186,16 +233,21 @@
 
 <!-- ═══ HEADER ═══ -->
 <header style="position: sticky; top: 0; z-index: 90; background: rgba(6,10,24,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid #1c2540;">
-  <div style="max-width: 1240px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
     <div style="display: flex; align-items: center; gap: 12px;">
       <div style="width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; background: white;">
         <img src="uploads/logo.png" alt="Doctor Simulator" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
       </div>
       <div>
-        <div style="font-weight: 900; font-size: 17px; letter-spacing: -0.3px;">דוקטור סימולטור</div>
-        <div style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: #64748b; letter-spacing: 2px;">Let your dream fly</div>
+        <div style="font-weight: 900; font-size: 15px; letter-spacing: -0.3px;">דוקטור סימולטור</div>
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 9px; color: #64748b; letter-spacing: 1px;">Let your dream fly</div>
       </div>
     </div>
+
+    <!-- Hamburger Menu Button -->
+    <button id="mobile-menu-toggle" style="background: none; border: none; color: #e8ecf4; font-size: 24px; cursor: pointer; padding: 8px; min-height: 44px; min-width: 44px; display: flex; align-items: center; justify-content: center;">☰</button>
+
+    <!-- Navigation -->
     <nav style="display: flex; gap: 28px; align-items: center;">
       <a href="#board" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">לוח חדשות</a>
       <a href="#tools" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">כלים</a>
@@ -568,6 +620,39 @@ async function loadWhatsAppLinks() {
 
 // Load links on page load
 loadWhatsAppLinks();
+
+// Mobile menu toggle
+const menuToggle = document.getElementById('mobile-menu-toggle');
+const nav = document.querySelector('nav');
+
+if (menuToggle && nav) {
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    menuToggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      menuToggle.textContent = '☰';
+    });
+  });
+
+  // Hide hamburger on desktop
+  function updateMenuDisplay() {
+    if (window.innerWidth >= 768) {
+      menuToggle.style.display = 'none';
+      nav.classList.remove('active');
+      menuToggle.textContent = '☰';
+    } else {
+      menuToggle.style.display = 'flex';
+    }
+  }
+
+  window.addEventListener('resize', updateMenuDisplay);
+  updateMenuDisplay();
+}
 </script>
 
 </body>
