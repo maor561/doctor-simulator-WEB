@@ -11,18 +11,32 @@ export default async function handler(req, res) {
   }
 
   try {
-    // For now, return placeholder until Cron updates DB
+    const { connectToDatabase } = await import('../lib/db.js');
+    const { getLatestNews } = await import('../lib/db.js');
+
+    const limit = parseInt(req.query.limit) || 10;
+    const news = await getLatestNews(limit);
+
+    res.setHeader('Cache-Control', 'max-age=60');
     return res.status(200).json({
       success: true,
-      count: 0,
-      news: [],
-      message: 'Waiting for first RSS fetch (runs daily at 15:00 UTC)'
+      count: news.length,
+      news: news.map(item => ({
+        _id: item._id?.toString(),
+        source: item.source,
+        title: item.title,
+        description: item.description,
+        link: item.link,
+        publishedAt: item.publishedAt,
+        image: item.image
+      }))
     });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching news:', error);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
+      timestamp: new Date().toISOString()
     });
   }
 }
