@@ -143,41 +143,30 @@
       gap: 16px !important;
     }
 
-    /* Cards - MOBILE */
+    /* Boarding pass cards - MOBILE (WhatsApp) */
+    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226"] {
+      flex-direction: column !important;
+    }
+    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226"] > div:first-child {
+      width: 100% !important;
+      height: 60px !important;
+      flex-direction: row !important;
+      border-right: none !important;
+    }
+    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226"] > div:not(:first-child) {
+      padding: 16px 12px !important;
+      border-right: none !important;
+      border-top: 1px solid #1c2540 !important;
+    }
+
+    /* Cards - MOBILE (Tools & Social) */
     a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] {
       padding: 20px !important;
     }
-
-    /* Boarding pass cards - MOBILE */
-    div[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid"] {
-      flex-direction: column !important;
-      gap: 0 !important;
-    }
-    div[style*="width: 90px; background: linear-gradient"] {
-      width: 100% !important;
-      height: 70px !important;
-      flex-direction: row !important;
-      gap: 8px !important;
-    }
-    div[style*="flex: 1; padding: 24px 28px"] {
-      padding: 18px 14px !important;
-      border-right: none !important;
-      border-top: 1px solid #1c2540 !important;
-      display: block !important;
-      flex: 1 !important;
-    }
-    div[style*="flex: 1; padding: 24px 28px"] h3 {
-      font-size: 16px !important;
-    }
-    div[style*="flex: 1; padding: 24px 28px"] p {
-      font-size: 12px !important;
-    }
-
-    /* Card text sizing */
-    a[style*="position: relative; display: block"] h3 {
+    a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] h3 {
       font-size: 20px !important;
     }
-    a[style*="position: relative; display: block"] p {
+    a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] p {
       font-size: 13px !important;
     }
 
