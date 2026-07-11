@@ -8,11 +8,7 @@
     "build": "echo 'Static site with serverless API'"
   },
   "dependencies": {
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "mongodb": "^6.3.0",
-    "rss-parser": "^3.13.0"
+    "mongodb": "^6.3.0"
   },
   "keywords": [
     "flight-simulation",
