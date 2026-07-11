@@ -142,6 +142,24 @@
       padding: 12px 16px !important;
     }
 
+    /* Mobile - Hide logo and adjust padding */
+    @media (max-width: 767px) {
+      div[style*="position: absolute; left: -120px"] {
+        display: none !important;
+      }
+    }
+
+    /* Tablet (768px+) - Show navigation, hide hamburger */
+    @media (min-width: 768px) {
+      div[style*="position: absolute; left: -120px"] {
+        left: -80px !important;
+      }
+      div[style*="position: absolute; left: -120px"] img {
+        width: 300px !important;
+        height: 300px !important;
+      }
+    }
+
     /* Tablet (768px+) - Show navigation, hide hamburger */
     @media (min-width: 768px) {
       #mobile-menu-toggle { display: none !important; }
