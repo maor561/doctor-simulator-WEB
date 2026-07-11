@@ -109,16 +109,30 @@
       font-size: 11px !important;
     }
 
-    section { padding: 48px 16px !important; }
-    section h1 { font-size: clamp(20px, 5.5vw, 78px) !important; }
-    section h2 { font-size: clamp(18px, 4.5vw, 36px) !important; }
-    section p { font-size: 14px !important; line-height: 1.5 !important; }
+    section { padding: 60px 16px !important; }
+    section h1 { font-size: clamp(24px, 5.5vw, 78px) !important; }
+    section h2 { font-size: clamp(20px, 4.5vw, 36px) !important; }
+    section p { font-size: 15px !important; line-height: 1.6 !important; }
 
     /* Buttons - Touch friendly */
     a[style*="padding: 15px"], button {
-      padding: 10px 18px !important;
-      min-height: 40px !important;
+      padding: 12px 20px !important;
+      min-height: 44px !important;
       font-size: 14px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Footer responsive */
+    footer { padding: 32px 16px !important; }
+    footer div[style*="display: flex; align-items: center; justify-content: space-between"] {
+      flex-direction: column !important;
+      gap: 20px !important;
+    }
+    footer div[style*="display: flex; gap"] {
+      flex-wrap: wrap !important;
+      justify-content: center !important;
     }
 
 
@@ -129,6 +143,11 @@
       gap: 16px !important;
     }
 
+    /* Cards - MOBILE */
+    a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] {
+      padding: 20px !important;
+    }
+
     /* Boarding pass cards - MOBILE */
     div[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid"] {
       flex-direction: column !important;
@@ -136,13 +155,22 @@
     }
     div[style*="width: 90px; background: linear-gradient"] {
       width: 100% !important;
-      height: 60px !important;
+      height: 70px !important;
       flex-direction: row !important;
+      gap: 8px !important;
     }
     div[style*="flex: 1; padding: 24px 28px"] {
-      padding: 20px 16px !important;
+      padding: 18px 14px !important;
       border-right: none !important;
       border-top: 1px solid #1c2540 !important;
+    }
+
+    /* Card text sizing */
+    a[style*="position: relative; display: block"] h3 {
+      font-size: 20px !important;
+    }
+    a[style*="position: relative; display: block"] p {
+      font-size: 13px !important;
     }
 
     /* Hide logo on mobile */
@@ -152,8 +180,12 @@
       }
       /* Enhance card numbers visibility on mobile */
       div[style*="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px"] {
-        opacity: 0.25 !important;
-        font-size: 48px !important;
+        opacity: 0.3 !important;
+        font-size: 42px !important;
+      }
+      /* Hero section optimization */
+      div[style*="max-width: 720px"] {
+        max-width: 100% !important;
       }
     }
 
@@ -166,23 +198,38 @@
         background: none !important;
         border: none !important;
         padding: 0 !important;
-        gap: 20px !important;
+        gap: 24px !important;
         flex-direction: row !important;
         top: auto !important;
         right: auto !important;
         left: auto !important;
         z-index: auto !important;
       }
-      nav a { padding: 8px 12px !important; }
+      nav a {
+        padding: 8px 12px !important;
+        font-size: 14px !important;
+      }
 
-      header { padding: 16px 32px !important; }
-      section { padding: 80px 32px !important; }
-      section h1 { font-size: clamp(28px, 6.5vw, 78px) !important; }
-      section h2 { font-size: clamp(24px, 5vw, 36px) !important; }
+      header { padding: 14px 28px !important; }
+      section { padding: 80px 28px !important; }
+      section h1 { font-size: clamp(32px, 6.5vw, 78px) !important; }
+      section h2 { font-size: clamp(26px, 5vw, 42px) !important; }
+
+      /* Cards on tablet */
+      a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] {
+        padding: 32px !important;
+      }
+      a[style*="position: relative; display: block"] h3 {
+        font-size: 22px !important;
+      }
+      a[style*="position: relative; display: block"] p {
+        font-size: 14px !important;
+      }
 
       div[style*="grid-template-columns: 1fr 1fr"],
       div[style*="repeat(2, 1fr)"] {
         grid-template-columns: repeat(2, 1fr) !important;
+        gap: 24px !important;
       }
 
       div[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid"] {
@@ -198,21 +245,40 @@
         left: -80px !important;
       }
       div[style*="position: absolute; left: -120px"] img {
-        width: 300px !important;
-        height: 300px !important;
+        width: 280px !important;
+        height: 280px !important;
       }
     }
 
     /* DESKTOP (1024px+) */
     @media (min-width: 1024px) {
-      header { padding: 18px 32px !important; }
+      header { padding: 16px 32px !important; }
       section { padding: 100px 32px !important; }
-      section h1 { font-size: clamp(42px, 7vw, 78px) !important; }
-      section h2 { font-size: clamp(32px, 5.5vw, 36px) !important; }
+      section h1 { font-size: clamp(44px, 7vw, 78px) !important; }
+      section h2 { font-size: clamp(34px, 5.5vw, 44px) !important; }
+
+      /* Cards on desktop */
+      a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] {
+        padding: 40px !important;
+      }
+      a[style*="position: relative; display: block"] h3 {
+        font-size: 26px !important;
+      }
+      a[style*="position: relative; display: block"] p {
+        font-size: 15px !important;
+      }
 
       a[style*="padding: 15px"], button {
         padding: 15px 36px !important;
         font-size: 16px !important;
+      }
+
+      div[style*="position: absolute; left: -120px"] {
+        left: -100px !important;
+      }
+      div[style*="position: absolute; left: -120px"] img {
+        width: 400px !important;
+        height: 400px !important;
       }
     }
   </style>
