@@ -47,28 +47,6 @@
       0% { transform: translateX(110vw) translateY(0) rotate(0deg); }
       100% { transform: translateX(-15vw) translateY(-60px) rotate(0deg); }
     }
-    #news-container {
-      display: block !important;
-    }
-    .news-item {
-      display: grid !important;
-      grid-template-columns: 110px 1fr 150px !important;
-      gap: 16px !important;
-      padding: 22px 28px !important;
-      border-bottom: 1px solid #10182e !important;
-      align-items: start !important;
-      transition: all 0.2s ease !important;
-      color: inherit !important;
-      text-decoration: none !important;
-      width: 100% !important;
-      background: transparent !important;
-    }
-    .news-item:hover {
-      background: rgba(251, 191, 36, 0.03) !important;
-    }
-    .news-item:last-of-type {
-      border-bottom: none !important;
-    }
     /* ═════ PROFESSIONAL MOBILE-FIRST RESPONSIVE DESIGN ═════ */
 
     /* Mobile menu toggle */
@@ -143,15 +121,6 @@
       font-size: 14px !important;
     }
 
-    /* News grid - single column */
-    .news-item {
-      grid-template-columns: 70px 1fr 80px !important;
-      gap: 10px !important;
-      padding: 12px 12px !important;
-    }
-    .news-item > span:first-child {
-      font-size: 11px !important;
-    }
 
     /* Single column layouts */
     div[style*="grid-template-columns: 1fr 1fr"],
@@ -196,9 +165,6 @@
       section h1 { font-size: clamp(28px, 6.5vw, 78px) !important; }
       section h2 { font-size: clamp(24px, 5vw, 36px) !important; }
 
-      .news-item {
-        grid-template-columns: 100px 1fr 120px !important;
-        gap: 16px !important;
         padding: 16px 20px !important;
       }
 
@@ -222,9 +188,6 @@
       section h1 { font-size: clamp(42px, 7vw, 78px) !important; }
       section h2 { font-size: clamp(32px, 5.5vw, 36px) !important; }
 
-      .news-item {
-        grid-template-columns: 110px 1fr 150px !important;
-        gap: 16px !important;
         padding: 22px 28px !important;
       }
 
@@ -263,7 +226,6 @@
 
     <!-- Navigation -->
     <nav style="display: flex; gap: 28px; align-items: center;">
-      <a href="#board" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">לוח חדשות</a>
       <a href="#tools" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">כלים</a>
       <a href="#gates" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">קבוצות</a>
       <a href="#gates" style="background: #3b82f6; color: #fff; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 12px rgba(59,130,246,0.35);" style-hover="background: #2563eb; color: #fff;">הצטרפו לקהילה</a>
@@ -304,31 +266,6 @@
   </div>
 </section>
 
-<!-- ═══ DEPARTURES BOARD — NEWS ═══ -->
-<section id="board" style="padding: 100px 32px; background: #04070f; border-top: 1px solid #1c2540; border-bottom: 1px solid #1c2540;">
-  <div style="max-width: 1240px; margin: 0 auto;">
-    <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
-      <h2 style="font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px;">📰 לוח חדשות תעופה</h2>
-      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; letter-spacing: 3px;">AVIATION NEWS — DEPARTURES</span>
-    </div>
-    <p style="color: #64748b; font-size: 15px; margin: 0 0 40px;">עדכון בזמן אמת מ-5 מקורות תעופה רלוונטיים</p>
-
-    <!-- board -->
-    <div id="news-board" style="background: #070b16; border: 1px solid #1c2540; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);">
-      <!-- board header row -->
-      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 16px; padding: 14px 28px; background: #0b1226; border-bottom: 1px solid #1c2540;">
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">תאריך</span>
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">כותרת</span>
-        <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px;">מקור</span>
-      </div>
-
-      <!-- news items will be inserted here -->
-      <div id="news-container" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
-        <span style="color: #64748b;">⏳ טוען חדשות...</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ TOOLS ═══ -->
 <section id="tools" style="padding: 100px 32px; background: #060a18;">
@@ -475,110 +412,6 @@
 </footer>
 
 <script>
-async function fetchAndDisplayNews() {
-  try {
-    const response = await fetch('/api/news?limit=10');
-    const data = await response.json();
-
-    if (!data.success || !data.news) {
-      document.getElementById('news-container').innerHTML =
-        '<span style="color: #94a3b8;">לא נמצאו חדשות עדיין. אנחנו סורקים RSS feeds...</span>';
-      return;
-    }
-
-    if (data.news.length === 0) {
-      document.getElementById('news-container').innerHTML =
-        '<span style="color: #94a3b8;">המתן לעדכון חדשות ראשוני...</span>';
-      return;
-    }
-
-    // Format date
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      return `${day}.${month}`;
-    }
-
-    // Get status color
-    function getStatusColor(publishedAt) {
-      const now = new Date();
-      const pubDate = new Date(publishedAt);
-      const hoursAgo = (now - pubDate) / (1000 * 60 * 60);
-
-      if (hoursAgo < 1) return '#10b981';
-      if (hoursAgo < 6) return '#fbbf24';
-      return '#64748b';
-    }
-
-    // Get status text
-    function getStatusText(publishedAt) {
-      const now = new Date();
-      const pubDate = new Date(publishedAt);
-      const hoursAgo = (now - pubDate) / (1000 * 60 * 60);
-
-      if (hoursAgo < 1) return 'חדש';
-      if (hoursAgo < 6) return 'פעיל';
-      return 'ישן';
-    }
-
-    // Build HTML
-    let html = '';
-    data.news.forEach((item) => {
-      const statusText = getStatusText(item.publishedAt);
-      const formattedDate = formatDate(item.publishedAt);
-      const hoursAgo = (new Date() - new Date(item.publishedAt)) / (1000 * 60 * 60);
-
-      let statusBg = 'rgba(100, 116, 139, 0.08)';
-      let statusBorder = 'rgba(100, 116, 139, 0.3)';
-      let statusTextColor = '#64748b';
-
-      if (hoursAgo < 1) {
-        statusBg = 'rgba(16, 185, 129, 0.08)';
-        statusBorder = 'rgba(16, 185, 129, 0.3)';
-        statusTextColor = '#10b981';
-      } else if (hoursAgo < 6) {
-        statusBg = 'rgba(251, 191, 36, 0.08)';
-        statusBorder = 'rgba(251, 191, 36, 0.3)';
-        statusTextColor = '#fbbf24';
-      }
-
-      html += `
-        <a href="${item.link}" target="_blank" rel="noopener" class="news-item">
-          <span style="font-family: 'Space Grotesk', monospace; font-size: 14px; color: #fbbf24; white-space: nowrap;">${formattedDate}</span>
-          <div>
-            <div style="font-size: 18px; font-weight: 700; color: #e8ecf4; letter-spacing: 0.3px; margin-bottom: 6px; word-break: break-word;">${item.title}</div>
-            <div style="font-size: 14px; color: #94a3b8; line-height: 1.6; font-weight: 300;">${item.description}</div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-            <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: ${statusTextColor}; border: 1px solid ${statusBorder}; background: ${statusBg}; border-radius: 4px; padding: 4px 10px; text-align: center; letter-spacing: 1px; white-space: nowrap;">${statusText}</span>
-            <span style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: #64748b; letter-spacing: 1px; white-space: nowrap;">${item.source}</span>
-          </div>
-        </a>
-      `;
-    });
-
-    document.getElementById('news-container').innerHTML = html;
-  } catch (error) {
-    console.error('Error fetching news:', error);
-    document.getElementById('news-container').innerHTML =
-      '<span style="color: #ef4444;">שגיאה בטעינת חדשות</span>';
-  }
-}
-
-// Fetch news on page load
-fetchAndDisplayNews();
-
-// Poll for new news every 60 seconds
-setInterval(fetchAndDisplayNews, 60000);
-
-// Also allow manual refresh
-window.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && e.key === 'r') {
-    console.log('Manually refreshing news...');
-    fetchAndDisplayNews();
-  }
-});
 
 // Load WhatsApp group links from admin config
 async function loadWhatsAppLinks() {
