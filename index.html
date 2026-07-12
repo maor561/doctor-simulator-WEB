@@ -8,22 +8,67 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet">
   <style>
+    /* CSS Variables - Dark Mode (Default) */
+    :root {
+      --bg-primary: #152039;
+      --bg-secondary: #0f1729;
+      --bg-tertiary: #0b1226;
+      --bg-overlay: #04070f;
+      --text-primary: #e8ecf4;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border-color: #1c2540;
+      --accent-blue: #3b82f6;
+      --accent-blue-hover: #60a5fa;
+      --accent-gold: #fbbf24;
+    }
+
+    /* Light Mode */
+    html[data-theme="light"] {
+      --bg-primary: #f8f9fa;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #f3f4f6;
+      --bg-overlay: #e5e7eb;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4b5563;
+      --text-muted: #6b7280;
+      --border-color: #d1d5db;
+      --accent-blue: #2563eb;
+      --accent-blue-hover: #1d4ed8;
+      --accent-gold: #d97706;
+    }
+
     html { direction: rtl; font-size: 16px; }
     body {
       margin: 0;
       padding: 0;
-      background: #152039;
-      color: #e8ecf4;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       font-family: 'Heebo', 'Segoe UI', sans-serif;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     * { box-sizing: border-box; }
-    a { color: #3b82f6; text-decoration: none; }
-    a:hover { color: #60a5fa; }
+    a { color: var(--accent-blue); text-decoration: none; }
+    a:hover { color: var(--accent-blue-hover); }
     /* Touch targets minimum 44px */
     button, a[role="button"] { min-height: 44px; min-width: 44px; }
+
+    /* ════ LIGHT MODE COLOR OVERRIDES ════ */
+    html[data-theme="light"] header { background: rgba(248, 249, 250, 0.95) !important; }
+    html[data-theme="light"] header, html[data-theme="light"] nav a { color: var(--text-primary) !important; }
+    html[data-theme="light"] [style*="background: #152039"], html[data-theme="light"] [style*="background: #0f1729"], html[data-theme="light"] [style*="background: #0b1226"], html[data-theme="light"] [style*="background: #04070f"], html[data-theme="light"] [style*="background: #060a18"] { background: var(--bg-primary) !important; }
+    html[data-theme="light"] [style*="color: #e8ecf4"] { color: var(--text-primary) !important; }
+    html[data-theme="light"] [style*="color: #94a3b8"] { color: var(--text-secondary) !important; }
+    html[data-theme="light"] [style*="color: #64748b"] { color: var(--text-muted) !important; }
+    html[data-theme="light"] [style*="border: 1px solid #1c2540"] { border-color: var(--border-color) !important; }
+    html[data-theme="light"] [style*="border-bottom: 1px solid #1c2540"] { border-bottom-color: var(--border-color) !important; }
+    html[data-theme="light"] [style*="border-top: 1px solid #1c2540"] { border-top-color: var(--border-color) !important; }
+    html[data-theme="light"] [style*="border-right: 2px dashed #2a3654"] { border-right-color: var(--border-color) !important; }
+    html[data-theme="light"] [style*="#3b82f6"] { --accent: #2563eb; }
+    html[data-theme="light"] [style*="#60a5fa"] { --accent-light: #1d4ed8; }
     @keyframes dashMove {
       to { stroke-dashoffset: -400; }
     }
@@ -303,8 +348,11 @@
       </div>
     </div>
 
-    <!-- Hamburger Menu Button -->
-    <button id="mobile-menu-toggle" style="background: none; border: none; color: #e8ecf4; font-size: 24px; cursor: pointer; padding: 8px; min-height: 44px; min-width: 44px; display: flex; align-items: center; justify-content: center;">☰</button>
+    <!-- Theme Toggle + Hamburger Menu -->
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <button id="theme-toggle" style="background: none; border: none; color: var(--text-primary); font-size: 20px; cursor: pointer; padding: 8px; min-height: 44px; min-width: 44px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" title="Toggle theme">🌙</button>
+      <button id="mobile-menu-toggle" style="background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; padding: 8px; min-height: 44px; min-width: 44px; display: flex; align-items: center; justify-content: center;">☰</button>
+    </div>
 
     <!-- Navigation -->
     <nav style="display: flex; gap: 28px; align-items: center;">
@@ -660,6 +708,28 @@
 </footer>
 
 <script>
+// ════ THEME TOGGLE ════
+const themeToggle = document.getElementById('theme-toggle');
+const html = document.documentElement;
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', savedTheme);
+updateThemeButton();
+
+// Toggle theme
+themeToggle.addEventListener('click', () => {
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeButton();
+});
+
+function updateThemeButton() {
+  const theme = html.getAttribute('data-theme');
+  themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+}
 
 // Load WhatsApp group links from admin config
 async function loadWhatsAppLinks() {
