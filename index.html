@@ -8,34 +8,83 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet">
   <style>
-    /* CSS Variables - Dark Mode (Default) */
+    /* ════ THEME VARIABLES — DARK (default) ════ */
     :root {
+      /* Surfaces */
       --bg-primary: #152039;
-      --bg-secondary: #0f1729;
-      --bg-tertiary: #0b1226;
-      --bg-overlay: #04070f;
+      --bg-deep: #04070f;
+      --bg-card: #0b1226;
+      --bg-card-soft: rgba(11,18,38,0.45);
+      /* Text */
       --text-primary: #e8ecf4;
       --text-secondary: #94a3b8;
       --text-muted: #64748b;
+      /* Borders */
       --border-color: #1c2540;
+      --border-soft: #2a3654;
+      /* Header / chips */
+      --header-bg: rgba(6,10,24,0.85);
+      --nav-mobile-bg: rgba(6,10,24,0.95);
+      --chip-bg: rgba(28,37,64,0.5);
+      /* Highlight box (stats) */
+      --highlight-bg: rgba(29,78,216,0.1);
+      --highlight-border: rgba(59,130,246,0.2);
+      /* Accents */
       --accent-blue: #3b82f6;
       --accent-blue-hover: #60a5fa;
       --accent-gold: #fbbf24;
+      --accent-green: #10b981;
+      --accent-green-light: #34d399;
+      --accent-orange-light: #fb923c;
+      --accent-purple-light: #a78bfa;
+      --accent-pink: #ec4899;
+      /* Gradients */
+      --gradient-text: linear-gradient(120deg, #60a5fa, #3b82f6 45%, #fbbf24);
+      --gradient-blue-btn: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      /* Decorative glows */
+      --hero-glow-blue: rgba(29,78,216,0.22);
+      --hero-glow-gold: rgba(251,191,36,0.06);
+      --cta-glow: rgba(29,78,216,0.25);
+      --tool-tint-blue: rgba(29,78,216,0.12);
+      --tool-tint-green: rgba(16,185,129,0.1);
+      --card-number-blue: rgba(59,130,246,0.12);
+      --card-number-green: rgba(16,185,129,0.12);
     }
 
-    /* Light Mode */
+    /* ════ THEME VARIABLES — LIGHT ════ */
+    /* Soft gray canvas (not bright white) with white elevated cards + darkened accents for AA contrast */
     html[data-theme="light"] {
-      --bg-primary: #f8f9fa;
-      --bg-secondary: #ffffff;
-      --bg-tertiary: #f3f4f6;
-      --bg-overlay: #e5e7eb;
-      --text-primary: #1a1a1a;
-      --text-secondary: #4b5563;
-      --text-muted: #6b7280;
-      --border-color: #d1d5db;
+      --bg-primary: #e7e9ee;
+      --bg-deep: #dce0e6;
+      --bg-card: #ffffff;
+      --bg-card-soft: rgba(255,255,255,0.72);
+      --text-primary: #1a2233;
+      --text-secondary: #435063;
+      --text-muted: #5a6579;
+      --border-color: #c7ccd6;
+      --border-soft: #b3bbc8;
+      --header-bg: rgba(231,233,238,0.92);
+      --nav-mobile-bg: rgba(231,233,238,0.97);
+      --chip-bg: rgba(255,255,255,0.75);
+      --highlight-bg: rgba(37,99,235,0.08);
+      --highlight-border: rgba(37,99,235,0.25);
       --accent-blue: #2563eb;
       --accent-blue-hover: #1d4ed8;
-      --accent-gold: #d97706;
+      --accent-gold: #92400e;
+      --accent-green: #047857;
+      --accent-green-light: #047857;
+      --accent-orange-light: #9a3412;
+      --accent-purple-light: #6d28d9;
+      --accent-pink: #be185d;
+      --gradient-text: linear-gradient(120deg, #1d4ed8, #1e3a8a 45%, #92400e);
+      --gradient-blue-btn: linear-gradient(135deg, #2563eb, #1e3a8a);
+      --hero-glow-blue: rgba(37,99,235,0.10);
+      --hero-glow-gold: rgba(180,83,9,0.05);
+      --cta-glow: rgba(37,99,235,0.12);
+      --tool-tint-blue: rgba(37,99,235,0.07);
+      --tool-tint-green: rgba(5,150,105,0.07);
+      --card-number-blue: rgba(37,99,235,0.10);
+      --card-number-green: rgba(5,150,105,0.10);
     }
 
     html { direction: rtl; font-size: 16px; }
@@ -55,20 +104,6 @@
     a:hover { color: var(--accent-blue-hover); }
     /* Touch targets minimum 44px */
     button, a[role="button"] { min-height: 44px; min-width: 44px; }
-
-    /* ════ LIGHT MODE COLOR OVERRIDES ════ */
-    html[data-theme="light"] header { background: rgba(248, 249, 250, 0.95) !important; }
-    html[data-theme="light"] header, html[data-theme="light"] nav a { color: var(--text-primary) !important; }
-    html[data-theme="light"] [style*="background: #152039"], html[data-theme="light"] [style*="background: #0f1729"], html[data-theme="light"] [style*="background: #0b1226"], html[data-theme="light"] [style*="background: #04070f"], html[data-theme="light"] [style*="background: #060a18"] { background: var(--bg-primary) !important; }
-    html[data-theme="light"] [style*="color: #e8ecf4"] { color: var(--text-primary) !important; }
-    html[data-theme="light"] [style*="color: #94a3b8"] { color: var(--text-secondary) !important; }
-    html[data-theme="light"] [style*="color: #64748b"] { color: var(--text-muted) !important; }
-    html[data-theme="light"] [style*="border: 1px solid #1c2540"] { border-color: var(--border-color) !important; }
-    html[data-theme="light"] [style*="border-bottom: 1px solid #1c2540"] { border-bottom-color: var(--border-color) !important; }
-    html[data-theme="light"] [style*="border-top: 1px solid #1c2540"] { border-top-color: var(--border-color) !important; }
-    html[data-theme="light"] [style*="border-right: 2px dashed #2a3654"] { border-right-color: var(--border-color) !important; }
-    html[data-theme="light"] [style*="#3b82f6"] { --accent: #2563eb; }
-    html[data-theme="light"] [style*="#60a5fa"] { --accent-light: #1d4ed8; }
     @keyframes dashMove {
       to { stroke-dashoffset: -400; }
     }
@@ -99,7 +134,7 @@
       display: flex !important;
       background: none !important;
       border: none !important;
-      color: #e8ecf4 !important;
+      color: var(--text-primary) !important;
       font-size: 24px !important;
       cursor: pointer !important;
       padding: 8px !important;
@@ -134,8 +169,8 @@
       top: 60px !important;
       right: 0 !important;
       left: 0 !important;
-      background: rgba(6,10,24,0.95) !important;
-      border-bottom: 1px solid #1c2540 !important;
+      background: var(--nav-mobile-bg) !important;
+      border-bottom: 1px solid var(--border-color) !important;
       padding: 12px 16px !important;
       z-index: 80 !important;
     }
@@ -189,29 +224,29 @@
     }
 
     /* Boarding pass cards - MOBILE (WhatsApp) */
-    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226"] {
+    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card)"] {
       flex-direction: column !important;
     }
-    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226"] > div:first-child {
+    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card)"] > div:first-child {
       width: 100% !important;
       height: 60px !important;
       flex-direction: row !important;
       border-right: none !important;
     }
-    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226"] > div:not(:first-child) {
+    a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card)"] > div:not(:first-child) {
       padding: 16px 12px !important;
       border-right: none !important;
-      border-top: 1px solid #1c2540 !important;
+      border-top: 1px solid var(--border-color) !important;
     }
 
     /* Cards - MOBILE (Tools & Social) */
-    a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] {
+    a[style*="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px"] {
       padding: 20px !important;
     }
-    a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] h3 {
+    a[style*="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px"] h3 {
       font-size: 20px !important;
     }
-    a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] p {
+    a[style*="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px"] p {
       font-size: 13px !important;
     }
 
@@ -258,7 +293,7 @@
       section h2 { font-size: clamp(26px, 5vw, 42px) !important; }
 
       /* Cards on tablet */
-      a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] {
+      a[style*="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px"] {
         padding: 32px !important;
       }
       a[style*="position: relative; display: block"] h3 {
@@ -300,7 +335,7 @@
       section h2 { font-size: clamp(34px, 5.5vw, 44px) !important; }
 
       /* Cards on desktop */
-      a[style*="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px"] {
+      a[style*="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px"] {
         padding: 40px !important;
       }
       a[style*="position: relative; display: block"] h3 {
@@ -328,15 +363,15 @@
 <body>
 
 <!-- ═══ TICKER ═══ -->
-<div style="background: #0b1226; border-bottom: 1px solid #1c2540; overflow: hidden; white-space: nowrap; direction: ltr;">
+<div style="background: var(--bg-card); border-bottom: 1px solid var(--border-color); overflow: hidden; white-space: nowrap; direction: ltr;">
   <div style="display: inline-flex; gap: 0; animation: tickerMove 40s linear infinite; will-change: transform;">
-    <span style="font-family: 'Space Grotesk', monospace; font-size: 13px; color: #fbbf24; letter-spacing: 1px; padding: 9px 0; direction: rtl; display: inline-block;">✈ טיסה משותפת הערב 21:00 — LLBG ✦ עדכון חדש ל-MSFS 2024 ✦ תחרות נחיתות יולי נפתחה להרשמה ✦ 4 קבוצות וואטסאפ פעילות ✦ כלי חדש: Flight Target ✦&nbsp;</span>
-    <span style="font-family: 'Space Grotesk', monospace; font-size: 13px; color: #fbbf24; letter-spacing: 1px; padding: 9px 0; direction: rtl; display: inline-block;">✈ טיסה משותפת הערב 21:00 — LLBG ✦ עדכון חדש ל-MSFS 2024 ✦ תחרות נחיתות יולי נפתחה להרשמה ✦ 4 קבוצות וואטסאפ פעילות ✦ כלי חדש: Flight Target ✦&nbsp;</span>
+    <span style="font-family: 'Space Grotesk', monospace; font-size: 13px; color: var(--accent-gold); letter-spacing: 1px; padding: 9px 0; direction: rtl; display: inline-block;">✈ טיסה משותפת הערב 21:00 — LLBG ✦ עדכון חדש ל-MSFS 2024 ✦ תחרות נחיתות יולי נפתחה להרשמה ✦ 4 קבוצות וואטסאפ פעילות ✦ כלי חדש: Flight Target ✦&nbsp;</span>
+    <span style="font-family: 'Space Grotesk', monospace; font-size: 13px; color: var(--accent-gold); letter-spacing: 1px; padding: 9px 0; direction: rtl; display: inline-block;">✈ טיסה משותפת הערב 21:00 — LLBG ✦ עדכון חדש ל-MSFS 2024 ✦ תחרות נחיתות יולי נפתחה להרשמה ✦ 4 קבוצות וואטסאפ פעילות ✦ כלי חדש: Flight Target ✦&nbsp;</span>
   </div>
 </div>
 
 <!-- ═══ HEADER ═══ -->
-<header style="position: sticky; top: 0; z-index: 90; background: rgba(6,10,24,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid #1c2540;">
+<header style="position: sticky; top: 0; z-index: 90; background: var(--header-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);">
   <div style="max-width: 1240px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
     <div style="display: flex; align-items: center; gap: 12px;">
       <div style="width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; background: white;">
@@ -344,7 +379,7 @@
       </div>
       <div>
         <div style="font-weight: 900; font-size: 15px; letter-spacing: -0.3px;">דוקטור סימולטור</div>
-        <div style="font-family: 'Space Grotesk', monospace; font-size: 9px; color: #64748b; letter-spacing: 1px;">Let your dream fly</div>
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 9px; color: var(--text-muted); letter-spacing: 1px;">Let your dream fly</div>
       </div>
     </div>
 
@@ -356,23 +391,23 @@
 
     <!-- Navigation -->
     <nav style="display: flex; gap: 28px; align-items: center;">
-      <a href="#tools" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">כלים</a>
-      <a href="#gates" style="color: #94a3b8; font-size: 14px; font-weight: 500;" style-hover="color: #fbbf24;">קבוצות</a>
-      <a href="#gates" style="background: #3b82f6; color: #fff; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 12px rgba(59,130,246,0.35);" style-hover="background: #2563eb; color: #fff;">הצטרפו לקהילה</a>
+      <a href="#tools" style="color: var(--text-secondary); font-size: 14px; font-weight: 500;" style-hover="color: var(--accent-gold);">כלים</a>
+      <a href="#gates" style="color: var(--text-secondary); font-size: 14px; font-weight: 500;" style-hover="color: var(--accent-gold);">קבוצות</a>
+      <a href="#gates" style="background: var(--accent-blue); color: #fff; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 12px rgba(59,130,246,0.35);" style-hover="background: #2563eb; color: #fff;">הצטרפו לקהילה</a>
     </nav>
   </div>
 </header>
 
 <!-- ═══ HERO ═══ -->
-<section style="position: relative; overflow: hidden; padding: 110px 32px 90px; background: radial-gradient(ellipse 900px 500px at 75% -10%, rgba(29,78,216,0.22), transparent), radial-gradient(ellipse 600px 400px at 15% 110%, rgba(251,191,36,0.06), transparent);">
+<section style="position: relative; overflow: hidden; padding: 110px 32px 90px; background: radial-gradient(ellipse 900px 500px at 75% -10%, var(--hero-glow-blue), transparent), radial-gradient(ellipse 600px 400px at 15% 110%, var(--hero-glow-gold), transparent);">
   <!-- flight path svg -->
   <svg viewBox="0 0 1200 420" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none;" preserveAspectRatio="xMidYMid slice">
-    <path d="M -50 340 C 250 320, 420 180, 640 160 S 1080 80, 1280 40" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="8 10" style="animation: dashMove 12s linear infinite;"></path>
-    <path d="M -50 400 C 300 390, 500 300, 750 270 S 1100 210, 1280 190" fill="none" stroke="#1c2540" stroke-width="1.5" stroke-dasharray="4 8"></path>
-    <circle cx="640" cy="160" r="4" fill="#fbbf24"></circle>
-    <circle cx="640" cy="160" r="10" fill="none" stroke="#fbbf24" stroke-width="1" style="animation: glowPulse 2.5s ease infinite;"></circle>
-    <circle cx="250" cy="305" r="3" fill="#3b82f6"></circle>
-    <circle cx="1020" cy="93" r="3" fill="#3b82f6"></circle>
+    <path d="M -50 340 C 250 320, 420 180, 640 160 S 1080 80, 1280 40" fill="none" stroke-width="1.5" stroke-dasharray="8 10" style="stroke: var(--accent-blue); animation: dashMove 12s linear infinite;"></path>
+    <path d="M -50 400 C 300 390, 500 300, 750 270 S 1100 210, 1280 190" fill="none" stroke-width="1.5" stroke-dasharray="4 8" style="stroke: var(--border-color);"></path>
+    <circle cx="640" cy="160" r="4" style="fill: var(--accent-gold);"></circle>
+    <circle cx="640" cy="160" r="10" fill="none" stroke-width="1" style="stroke: var(--accent-gold); animation: glowPulse 2.5s ease infinite;"></circle>
+    <circle cx="250" cy="305" r="3" style="fill: var(--accent-blue);"></circle>
+    <circle cx="1020" cy="93" r="3" style="fill: var(--accent-blue);"></circle>
   </svg>
 
   <div style="max-width: 1240px; margin: 0 auto; position: relative;">
@@ -382,20 +417,20 @@
     </div>
 
     <div style="max-width: 720px; animation: fadeUp 0.7s ease both;">
-      <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #2a3654; background: rgba(28,37,64,0.5); border-radius: 100px; padding: 6px 16px; margin-bottom: 28px;">
-        <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; animation: glowPulse 2s ease infinite;"></span>
-        <span style="font-size: 13px; color: #94a3b8; font-weight: 500;">הקהילה פעילה עכשיו — מוזמנים להצטרף</span>
+      <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border-soft); background: var(--chip-bg); border-radius: 100px; padding: 6px 16px; margin-bottom: 28px;">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); display: inline-block; animation: glowPulse 2s ease infinite;"></span>
+        <span style="font-size: 13px; color: var(--text-secondary); font-weight: 500;">הקהילה פעילה עכשיו — מוזמנים להצטרף</span>
       </div>
       <h1 style="font-size: clamp(42px, 6.5vw, 78px); font-weight: 900; line-height: 1.05; margin: 0 0 24px; letter-spacing: -2px;">
         הבית של חובבי<br>
-        <span style="background: linear-gradient(120deg, #60a5fa, #3b82f6 45%, #fbbf24); -webkit-background-clip: text; background-clip: text; color: transparent;">הסימולציה בישראל</span>
+        <span style="background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; color: transparent;">הסימולציה בישראל</span>
       </h1>
-      <p style="font-size: 19px; color: #94a3b8; line-height: 1.7; margin: 0 0 40px; max-width: 560px; font-weight: 300;">
+      <p style="font-size: 19px; color: var(--text-secondary); line-height: 1.7; margin: 0 0 40px; max-width: 560px; font-weight: 300;">
         טיסות משותפות, עזרה טכנית, כלים שנבנו במיוחד עבור הקהילה — וחדשות תעופה טריות. הכל במקום אחד.
       </p>
       <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <a href="#gates" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; padding: 15px 36px; border-radius: 8px; font-size: 16px; font-weight: 700; box-shadow: 0 4px 24px rgba(59,130,246,0.4); transition: transform 0.2s ease;" style-hover="transform: translateY(-2px); color: #fff;">💬 הצטרפו לוואטסאפ</a>
-        <a href="#tools" style="border: 1px solid #2a3654; color: #e8ecf4; padding: 15px 36px; border-radius: 8px; font-size: 16px; font-weight: 500; transition: border-color 0.2s ease;" style-hover="border-color: #3b82f6; color: #e8ecf4;">🛠️ לכלים של הקהילה</a>
+        <a href="#gates" style="background: var(--gradient-blue-btn); color: #fff; padding: 15px 36px; border-radius: 8px; font-size: 16px; font-weight: 700; box-shadow: 0 4px 24px rgba(59,130,246,0.4); transition: transform 0.2s ease;" style-hover="transform: translateY(-2px); color: #fff;">💬 הצטרפו לוואטסאפ</a>
+        <a href="#tools" style="border: 1px solid var(--border-soft); color: var(--text-primary); padding: 15px 36px; border-radius: 8px; font-size: 16px; font-weight: 500; transition: border-color 0.2s ease;" style-hover="border-color: #3b82f6; color: var(--text-primary);">🛠️ לכלים של הקהילה</a>
       </div>
     </div>
   </div>
@@ -403,70 +438,70 @@
 
 
 <!-- ═══ TOOLS ═══ -->
-<section id="tools" style="padding: 100px 32px; background: #060a18;">
+<section id="tools" style="padding: 100px 32px; background: var(--bg-deep);">
   <div style="max-width: 1240px; margin: 0 auto;">
     <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
       <h2 style="font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px;">🛠️ כלים שנבנו לקהילה</h2>
-      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; letter-spacing: 3px;">COMMUNITY TOOLS</span>
+      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: var(--text-muted); letter-spacing: 3px;">COMMUNITY TOOLS</span>
     </div>
-    <p style="color: #64748b; font-size: 15px; margin: 0 0 48px;">פותחו בהתנדבות, מתוך אהבה לתחום — חינם לכל חברי הקהילה</p>
+    <p style="color: var(--text-muted); font-size: 15px; margin: 0 0 48px;">פותחו בהתנדבות, מתוך אהבה לתחום — חינם לכל חברי הקהילה</p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
-      <a href="https://flight-target.vercel.app/" target="_blank" rel="noopener" style="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px; padding: 40px; background: linear-gradient(160deg, rgba(29,78,216,0.12), rgba(11,18,38,0.4) 55%); color: inherit; transition: all 0.25s ease; overflow: hidden;" style-hover="border-color: #3b82f6; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(59,130,246,0.15); color: inherit;">
-        <div style="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px; font-weight: 700; color: rgba(59,130,246,0.12); line-height: 1;">01</div>
+      <a href="https://flight-target.vercel.app/" target="_blank" rel="noopener" style="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; background: linear-gradient(160deg, var(--tool-tint-blue), var(--bg-card-soft) 55%); color: inherit; transition: all 0.25s ease; overflow: hidden;" style-hover="border-color: #3b82f6; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(59,130,246,0.15); color: inherit;">
+        <div style="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px; font-weight: 700; color: var(--card-number-blue); line-height: 1;">01</div>
         <img src="https://flight-target.vercel.app/logo.png" alt="Flight Target" style="height: 64px; width: 64px; margin-bottom: 20px; object-fit: contain;">
         <h3 style="font-size: 26px; font-weight: 900; margin: 0 0 4px; letter-spacing: -0.5px;">Flight Target</h3>
-        <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #3b82f6; letter-spacing: 2px; margin-bottom: 16px;">FLIGHT-TARGET.VERCEL.APP</div>
-        <p style="font-size: 15px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px; font-weight: 300;">בחירת יעדי טיסה חכמה&nbsp;<br>לא יודעים לאן לטוס?<br>כנסו ותראו את מה שאחרים מפספסים<br>כל הטיסות הלא שגרתיות מנתב"ג</p>
-        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: #60a5fa;">כניסה<span style="font-family: &quot;Space Grotesk&quot;, monospace;">←</span></span>
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: var(--accent-blue); letter-spacing: 2px; margin-bottom: 16px;">FLIGHT-TARGET.VERCEL.APP</div>
+        <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin: 0 0 28px; font-weight: 300;">בחירת יעדי טיסה חכמה&nbsp;<br>לא יודעים לאן לטוס?<br>כנסו ותראו את מה שאחרים מפספסים<br>כל הטיסות הלא שגרתיות מנתב"ג</p>
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: var(--accent-blue-hover);">כניסה<span style="font-family: &quot;Space Grotesk&quot;, monospace;">←</span></span>
       </a>
 
-      <a href="https://doctor-simulator-flights.vercel.app/" target="_blank" rel="noopener" style="position: relative; display: block; border: 1px solid #1c2540; border-radius: 16px; padding: 40px; background: linear-gradient(160deg, rgba(16,185,129,0.1), rgba(11,18,38,0.4) 55%); color: inherit; transition: all 0.25s ease; overflow: hidden;" style-hover="border-color: #10b981; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(16,185,129,0.12); color: inherit;">
-        <div style="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px; font-weight: 700; color: rgba(16,185,129,0.12); line-height: 1;">02</div>
+      <a href="https://doctor-simulator-flights.vercel.app/" target="_blank" rel="noopener" style="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; background: linear-gradient(160deg, var(--tool-tint-green), var(--bg-card-soft) 55%); color: inherit; transition: all 0.25s ease; overflow: hidden;" style-hover="border-color: #10b981; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(16,185,129,0.12); color: inherit;">
+        <div style="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px; font-weight: 700; color: var(--card-number-green); line-height: 1;">02</div>
         <img src="https://images.squarespace-cdn.com/content/v1/58060ccd893fc021e947c6aa/1564069877484-JI8D07J5SCYPFJ24T66O/planet-earth-travel-world-concept-blue-sky-background_43605-2460.jpg?format=2500w" alt="World Tour" style="height: 64px; width: 120px; margin-bottom: 20px; object-fit: cover; border-radius: 8px;">
         <h3 style="font-size: 26px; font-weight: 900; margin: 0 0 4px; letter-spacing: -0.5px;">Doctor Simulator Flights</h3>
-        <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: #10b981; letter-spacing: 2px; margin-bottom: 16px;">DOCTOR-SIMULATOR-FLIGHTS.VERCEL.APP</div>
-        <p style="font-size: 15px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px; font-weight: 300;">פרוייקט טיול מסביב לעולם<br>הצטרפו אלינו לטיסה מסביב לעולם&nbsp;<br>כל הפרטים בפנים&nbsp;</p>
-        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: #34d399;">כניסה<span style="font-family: &quot;Space Grotesk&quot;, monospace;">←</span></span>
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: var(--accent-green); letter-spacing: 2px; margin-bottom: 16px;">DOCTOR-SIMULATOR-FLIGHTS.VERCEL.APP</div>
+        <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin: 0 0 28px; font-weight: 300;">פרוייקט טיול מסביב לעולם<br>הצטרפו אלינו לטיסה מסביב לעולם&nbsp;<br>כל הפרטים בפנים&nbsp;</p>
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: var(--accent-green-light);">כניסה<span style="font-family: &quot;Space Grotesk&quot;, monospace;">←</span></span>
       </a>
     </div>
   </div>
 </section>
 
 <!-- ═══ SOCIAL MEDIA ═══ -->
-<section style="padding: 100px 32px; background: #04070f; border-top: 1px solid #1c2540;">
+<section style="padding: 100px 32px; background: var(--bg-deep); border-top: 1px solid var(--border-color);">
   <div style="max-width: 1240px; margin: 0 auto;">
     <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
       <h2 style="font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px;">📡 עקבו אחרינו</h2>
-      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; letter-spacing: 3px;">SOCIAL MEDIA — CONNECT</span>
+      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: var(--text-muted); letter-spacing: 3px;">SOCIAL MEDIA — CONNECT</span>
     </div>
-    <p style="color: #64748b; font-size: 15px; margin: 0 0 48px;">מוזמנים לעקוב אחרינו גם פה</p>
+    <p style="color: var(--text-muted); font-size: 15px; margin: 0 0 48px;">מוזמנים לעקוב אחרינו גם פה</p>
 
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
 
       <!-- Facebook Card -->
-      <a href="https://www.facebook.com/doctorsimulator/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #3b82f6; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(59,130,246,0.12); color: inherit;">
+      <a href="https://www.facebook.com/doctorsimulator/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); color: inherit; transition: all 0.25s ease;" style-hover="border-color: #3b82f6; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(59,130,246,0.12); color: inherit;">
         <div style="width: 90px; background: linear-gradient(180deg, #1d4ed8, #3b82f6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
           <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">FOLLOW</span>
           <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style="margin-top: 4px;">
             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
           </svg>
         </div>
-        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654;">
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed var(--border-soft);">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
             <span style="font-size: 22px;">👥</span>
             <h3 style="font-size: 19px; font-weight: 900; margin: 0;">Facebook</h3>
           </div>
-          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">קבוצה גדולה של טייסים — שיתוף ידע, תמונות וטיסות משותפות.</p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.6; font-weight: 300;">קבוצה גדולה של טייסים — שיתוף ידע, תמונות וטיסות משותפות.</p>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 14px; font-weight: 700; color: #60a5fa;">פתחו את Facebook ←</span>
-            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+            <span style="font-size: 14px; font-weight: 700; color: var(--accent-blue-hover);">פתחו את Facebook ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, var(--text-muted) 0 2px, transparent 2px 5px, var(--text-muted) 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
           </div>
         </div>
       </a>
 
       <!-- Instagram Card -->
-      <a href="https://www.instagram.com/doctor_simulator/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #ec4899; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(236,72,153,0.12); color: inherit;">
+      <a href="https://www.instagram.com/doctor_simulator/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); color: inherit; transition: all 0.25s ease;" style-hover="border-color: var(--accent-pink); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(236,72,153,0.12); color: inherit;">
         <div style="width: 90px; background: linear-gradient(180deg, #be185d, #ec4899); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
           <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">FOLLOW</span>
           <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style="margin-top: 4px;">
@@ -475,15 +510,15 @@
             <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
           </svg>
         </div>
-        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654;">
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed var(--border-soft);">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
             <span style="font-size: 22px;">✨</span>
             <h3 style="font-size: 19px; font-weight: 900; margin: 0;">Instagram</h3>
           </div>
-          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">סטוריס יומיות — תמונות משכנעות מטיסות, וידאו וחיזוקים קהילתיים.</p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.6; font-weight: 300;">סטוריס יומיות — תמונות משכנעות מטיסות, וידאו וחיזוקים קהילתיים.</p>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 14px; font-weight: 700; color: #ec4899;">בואו לעקוב ←</span>
-            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+            <span style="font-size: 14px; font-weight: 700; color: var(--accent-pink);">בואו לעקוב ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, var(--text-muted) 0 2px, transparent 2px 5px, var(--text-muted) 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
           </div>
         </div>
       </a>
@@ -493,88 +528,88 @@
 </section>
 
 <!-- ═══ GATES — WHATSAPP GROUPS ═══ -->
-<section id="gates" style="padding: 100px 32px 120px; background: #04070f; border-top: 1px solid #1c2540;">
+<section id="gates" style="padding: 100px 32px 120px; background: var(--bg-deep); border-top: 1px solid var(--border-color);">
   <div style="max-width: 1240px; margin: 0 auto;">
     <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
       <h2 style="font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px;">🎫 כרטיס העלייה שלכם</h2>
-      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #64748b; letter-spacing: 3px;">BOARDING — WHATSAPP GATES</span>
+      <span style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: var(--text-muted); letter-spacing: 3px;">BOARDING — WHATSAPP GATES</span>
     </div>
-    <p style="color: #64748b; font-size: 15px; margin: 0 0 48px;">בחרו שער — כל קבוצה היא עולם: עזרה הדדית, תיאום טיסות משותפות ותמיכה טכנית</p>
+    <p style="color: var(--text-muted); font-size: 15px; margin: 0 0 48px;">בחרו שער — כל קבוצה היא עולם: עזרה הדדית, תיאום טיסות משותפות ותמיכה טכנית</p>
 
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
 
       <!-- boarding pass: general -->
-      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #3b82f6; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(59,130,246,0.12); color: inherit;">
+      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); color: inherit; transition: all 0.25s ease;" style-hover="border-color: #3b82f6; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(59,130,246,0.12); color: inherit;">
         <div style="width: 90px; background: linear-gradient(180deg, #1d4ed8, #3b82f6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
           <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">GATE</span>
           <span style="font-family: 'Space Grotesk', monospace; font-size: 26px; font-weight: 700; color: #fff;">A1</span>
         </div>
-        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654; position: relative;">
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed var(--border-soft); position: relative;">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
             <span style="font-size: 22px;">👥</span>
             <h3 style="font-size: 19px; font-weight: 900; margin: 0;">הקבוצה הכללית</h3>
           </div>
-          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">הלב של הקהילה — שיחות, עזרה הדדית, תיאום טיסות משותפות וכל מה שביניהם.</p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.6; font-weight: 300;">הלב של הקהילה — שיחות, עזרה הדדית, תיאום טיסות משותפות וכל מה שביניהם.</p>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 14px; font-weight: 700; color: #60a5fa;">הצטרפו לקבוצה ←</span>
-            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+            <span style="font-size: 14px; font-weight: 700; color: var(--accent-blue-hover);">הצטרפו לקבוצה ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, var(--text-muted) 0 2px, transparent 2px 5px, var(--text-muted) 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
           </div>
         </div>
       </a>
 
       <!-- boarding pass: buy/sell -->
-      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #f97316; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(249,115,22,0.12); color: inherit;">
+      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); color: inherit; transition: all 0.25s ease;" style-hover="border-color: #f97316; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(249,115,22,0.12); color: inherit;">
         <div style="width: 90px; background: linear-gradient(180deg, #c2410c, #f97316); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
           <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">GATE</span>
           <span style="font-family: 'Space Grotesk', monospace; font-size: 26px; font-weight: 700; color: #fff;">B2</span>
         </div>
-        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654;">
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed var(--border-soft);">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
             <span style="font-size: 22px;">🎧</span>
             <h3 style="font-size: 19px; font-weight: 900; margin: 0;">קנייה ומכירה</h3>
           </div>
-          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">יד שנייה מטייסים — ג'ויסטיקים, הגאים, מסכים וכל ציוד סימולציה. בלי עמלות, בין חברים.</p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.6; font-weight: 300;">יד שנייה מטייסים — ג'ויסטיקים, הגאים, מסכים וכל ציוד סימולציה. בלי עמלות, בין חברים.</p>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 14px; font-weight: 700; color: #fb923c;">הצטרפו לקבוצה ←</span>
-            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+            <span style="font-size: 14px; font-weight: 700; color: var(--accent-orange-light);">הצטרפו לקבוצה ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, var(--text-muted) 0 2px, transparent 2px 5px, var(--text-muted) 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
           </div>
         </div>
       </a>
 
       <!-- boarding pass: DCS -->
-      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #8b5cf6; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(139,92,246,0.12); color: inherit;">
+      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); color: inherit; transition: all 0.25s ease;" style-hover="border-color: #8b5cf6; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(139,92,246,0.12); color: inherit;">
         <div style="width: 90px; background: linear-gradient(180deg, #6d28d9, #8b5cf6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
           <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">GATE</span>
           <span style="font-family: 'Space Grotesk', monospace; font-size: 26px; font-weight: 700; color: #fff;">C3</span>
         </div>
-        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654;">
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed var(--border-soft);">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
             <span style="font-size: 22px;">🛦</span>
             <h3 style="font-size: 19px; font-weight: 900; margin: 0;">DCS World</h3>
           </div>
-          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">סימולציית קרב — משימות משותפות, הדרכות על מטוסי קרב וטיסות מבנה מתואמות.</p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.6; font-weight: 300;">סימולציית קרב — משימות משותפות, הדרכות על מטוסי קרב וטיסות מבנה מתואמות.</p>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 14px; font-weight: 700; color: #a78bfa;">הצטרפו לקבוצה ←</span>
-            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+            <span style="font-size: 14px; font-weight: 700; color: var(--accent-purple-light);">הצטרפו לקבוצה ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, var(--text-muted) 0 2px, transparent 2px 5px, var(--text-muted) 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
           </div>
         </div>
       </a>
 
       <!-- boarding pass: CVFR -->
-      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid #1c2540; background: #0b1226; color: inherit; transition: all 0.25s ease;" style-hover="border-color: #10b981; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(16,185,129,0.12); color: inherit;">
+      <a href="https://wa.me/" target="_blank" rel="noopener" style="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); color: inherit; transition: all 0.25s ease;" style-hover="border-color: #10b981; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(16,185,129,0.12); color: inherit;">
         <div style="width: 90px; background: linear-gradient(180deg, #047857, #10b981); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;">
           <span style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px;">GATE</span>
           <span style="font-family: 'Space Grotesk', monospace; font-size: 26px; font-weight: 700; color: #fff;">D4</span>
         </div>
-        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed #2a3654;">
+        <div style="flex: 1; padding: 24px 28px; border-right: 2px dashed var(--border-soft);">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
             <span style="font-size: 22px;">🗺️</span>
             <h3 style="font-size: 19px; font-weight: 900; margin: 0;">CVFR</h3>
           </div>
-          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 14px; line-height: 1.6; font-weight: 300;">טיסות ראייה בשמי הארץ והעולם — נתיבי CVFR אמיתיים, נקודות דיווח ותרגול קשר כמו בחיים.</p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.6; font-weight: 300;">טיסות ראייה בשמי הארץ והעולם — נתיבי CVFR אמיתיים, נקודות דיווח ותרגול קשר כמו בחיים.</p>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 14px; font-weight: 700; color: #34d399;">הצטרפו לקבוצה ←</span>
-            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, #64748b 0 2px, transparent 2px 5px, #64748b 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
+            <span style="font-size: 14px; font-weight: 700; color: var(--accent-green-light);">הצטרפו לקבוצה ←</span>
+            <div style="width: 90px; height: 26px; background: repeating-linear-gradient(90deg, var(--text-muted) 0 2px, transparent 2px 5px, var(--text-muted) 5px 6px, transparent 6px 9px); opacity: 0.5; border-radius: 2px;"></div>
           </div>
         </div>
       </a>
@@ -584,22 +619,22 @@
 </section>
 
 <!-- ═══ ABOUT ═══ -->
-<section style="padding: 100px 32px; background: #04070f; border-top: 1px solid #1c2540;">
+<section style="padding: 100px 32px; background: var(--bg-deep); border-top: 1px solid var(--border-color);">
   <div style="max-width: 920px; margin: 0 auto;">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 60px;">
       <h2 style="font-size: clamp(32px, 5.5vw, 48px); font-weight: 900; margin: 0 0 16px; letter-spacing: -1px; line-height: 1.1;">
         ברוכים הבאים לבית של חובבי הסימולציה בישראל
       </h2>
-      <p style="font-size: clamp(16px, 2.5vw, 20px); color: #fbbf24; font-weight: 300; margin: 0; letter-spacing: 0.5px;">המקום שבו התחביב הופך לחוויה.</p>
+      <p style="font-size: clamp(16px, 2.5vw, 20px); color: var(--accent-gold); font-weight: 300; margin: 0; letter-spacing: 0.5px;">המקום שבו התחביב הופך לחוויה.</p>
     </div>
 
     <!-- Content -->
-    <div style="background: rgba(11,18,38,0.4); border: 1px solid #1c2540; border-radius: 16px; padding: clamp(24px, 4vw, 48px); margin-bottom: 48px;">
-      <div style="font-size: 16px; color: #e8ecf4; line-height: 1.8; margin-bottom: 32px;">
+    <div style="background: var(--bg-card-soft); border: 1px solid var(--border-color); border-radius: 16px; padding: clamp(24px, 4vw, 48px); margin-bottom: 48px;">
+      <div style="font-size: 16px; color: var(--text-primary); line-height: 1.8; margin-bottom: 32px;">
         <p style="margin: 0 0 20px;">יש קהילות שאפשר להצטרף אליהן.<br>ויש מקומות שפשוט מרגישים כמו בית.</p>
 
-        <p style="margin: 0 0 20px; font-weight: 600; background: linear-gradient(120deg, #60a5fa, #3b82f6 45%, #fbbf24); -webkit-background-clip: text; background-clip: text; color: transparent;">
+        <p style="margin: 0 0 20px; font-weight: 600; background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; color: transparent;">
           Doctor Simulator היא הרבה יותר מקהילה – זו המשפחה של חובבי הסימולציה בישראל.
         </p>
 
@@ -613,56 +648,56 @@
         <div style="display: flex; gap: 12px;">
           <span style="font-size: 24px; flex-shrink: 0;">🎓</span>
           <div>
-            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: #60a5fa;">לומדים מהטובים ביותר</h4>
-            <p style="font-size: 14px; color: #94a3b8; margin: 0;">הדרכות, מדריכים, תמיכה וליווי אישי – הכול במקום אחד.</p>
+            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: var(--accent-blue-hover);">לומדים מהטובים ביותר</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">הדרכות, מדריכים, תמיכה וליווי אישי – הכול במקום אחד.</p>
           </div>
         </div>
 
         <div style="display: flex; gap: 12px;">
           <span style="font-size: 24px; flex-shrink: 0;">✈️</span>
           <div>
-            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: #60a5fa;">טסים יחד – לא לבד</h4>
-            <p style="font-size: 14px; color: #94a3b8; margin: 0;">טיסות קבוצתיות, אירועים מיוחדים ופעילויות קבועות עם חברי הקהילה.</p>
+            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: var(--accent-blue-hover);">טסים יחד – לא לבד</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">טיסות קבוצתיות, אירועים מיוחדים ופעילויות קבועות עם חברי הקהילה.</p>
           </div>
         </div>
 
         <div style="display: flex; gap: 12px;">
           <span style="font-size: 24px; flex-shrink: 0;">🛠️</span>
           <div>
-            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: #60a5fa;">תמיד יש מי שיעזור</h4>
-            <p style="font-size: 14px; color: #94a3b8; margin: 0;">בקהילה שלנו תמיד תמצאו אנשים שישמחו לעזור.</p>
+            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: var(--accent-blue-hover);">תמיד יש מי שיעזור</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">בקהילה שלנו תמיד תמצאו אנשים שישמחו לעזור.</p>
           </div>
         </div>
 
         <div style="display: flex; gap: 12px;">
           <span style="font-size: 24px; flex-shrink: 0;">🎧</span>
           <div>
-            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: #60a5fa;">קנייה ומכירה בין חברים</h4>
-            <p style="font-size: 14px; color: #94a3b8; margin: 0;">ציוד סימולציה בסביבה בטוחה ואמינה.</p>
+            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: var(--accent-blue-hover);">קנייה ומכירה בין חברים</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">ציוד סימולציה בסביבה בטוחה ואמינה.</p>
           </div>
         </div>
 
         <div style="display: flex; gap: 12px;">
           <span style="font-size: 24px; flex-shrink: 0;">📢</span>
           <div>
-            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: #60a5fa;">כל החדשות במקום אחד</h4>
-            <p style="font-size: 14px; color: #94a3b8; margin: 0;">עדכונים על סימולטורים, מטוסים, תוספים וציוד.</p>
+            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: var(--accent-blue-hover);">כל החדשות במקום אחד</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">עדכונים על סימולטורים, מטוסים, תוספים וציוד.</p>
           </div>
         </div>
 
         <div style="display: flex; gap: 12px;">
           <span style="font-size: 24px; flex-shrink: 0;">👥</span>
           <div>
-            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: #60a5fa;">קהילה שחיים אותה</h4>
-            <p style="font-size: 14px; color: #94a3b8; margin: 0;">מפגשים, אירועים וחברויות שנוצרו סביב אהבה משותפת.</p>
+            <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 4px; color: var(--accent-blue-hover);">קהילה שחיים אותה</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">מפגשים, אירועים וחברויות שנוצרו סביב אהבה משותפת.</p>
           </div>
         </div>
       </div>
 
       <!-- Stats -->
-      <div style="background: rgba(29,78,216,0.1); border: 1px solid rgba(59,130,246,0.2); border-radius: 12px; padding: 24px; margin-top: 32px;">
-        <p style="font-size: 14px; color: #64748b; margin: 0 0 16px; text-align: center; font-weight: 600;">יותר מ-12 שנים של קהילה</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px; color: #94a3b8;">
+      <div style="background: var(--highlight-bg); border: 1px solid var(--highlight-border); border-radius: 12px; padding: 24px; margin-top: 32px;">
+        <p style="font-size: 14px; color: var(--text-muted); margin: 0 0 16px; text-align: center; font-weight: 600;">יותר מ-12 שנים של קהילה</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px; color: var(--text-secondary);">
           <p style="margin: 0;">✔ אלפי שעות טיסה משותפות</p>
           <p style="margin: 0;">✔ אלפי חברים מכל הארץ</p>
           <p style="margin: 0;">✔ מאות הדרכות מקצועיות</p>
@@ -673,37 +708,37 @@
 
     <!-- Bottom message -->
     <div style="text-align: center; margin-bottom: 24px;">
-      <p style="font-size: 16px; color: #e8ecf4; margin: 0 0 12px; line-height: 1.7;">כי בסופו של דבר, סימולציה היא הרבה יותר ממטוסים, הגאים ומסכים.</p>
-      <p style="font-size: 17px; font-weight: 600; background: linear-gradient(120deg, #60a5fa, #3b82f6 45%, #fbbf24); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 0;">היא האנשים שטסים איתך.</p>
+      <p style="font-size: 16px; color: var(--text-primary); margin: 0 0 12px; line-height: 1.7;">כי בסופו של דבר, סימולציה היא הרבה יותר ממטוסים, הגאים ומסכים.</p>
+      <p style="font-size: 17px; font-weight: 600; background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 0;">היא האנשים שטסים איתך.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section style="padding: 110px 32px; background: radial-gradient(ellipse 700px 400px at 50% 120%, rgba(29,78,216,0.25), transparent), #060a18; border-top: 1px solid #1c2540; text-align: center; position: relative; overflow: hidden;">
+<section style="padding: 110px 32px; background: radial-gradient(ellipse 700px 400px at 50% 120%, var(--cta-glow), transparent), var(--bg-deep); border-top: 1px solid var(--border-color); text-align: center; position: relative; overflow: hidden;">
   <div style="position: absolute; top: 40px; font-size: 28px; opacity: 0.85; animation: planeFly 18s linear infinite; left: 0;">✈️</div>
   <div style="max-width: 640px; margin: 0 auto; position: relative;">
-    <div style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: #fbbf24; letter-spacing: 4px; margin-bottom: 20px;">FINAL BOARDING CALL</div>
+    <div style="font-family: 'Space Grotesk', monospace; font-size: 12px; color: var(--accent-gold); letter-spacing: 4px; margin-bottom: 20px;">FINAL BOARDING CALL</div>
     <h2 style="font-size: clamp(32px, 4.5vw, 52px); font-weight: 900; margin: 0 0 20px; letter-spacing: -1.5px; line-height: 1.15;">הטיסה שלכם ממריאה.<br>אתם עולים?</h2>
-    <p style="font-size: 17px; color: #94a3b8; margin: 0 0 40px; font-weight: 300; line-height: 1.7;">מצטרפים לקבוצה, מכירים את החברים, וממריאים יחד — כבר הערב.</p>
-    <a href="#gates" style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; padding: 17px 48px; border-radius: 8px; font-size: 17px; font-weight: 700; box-shadow: 0 8px 32px rgba(59,130,246,0.45); transition: transform 0.2s ease;" style-hover="transform: translateY(-2px); color: #fff;">💬 הצטרפו לקהילה עכשיו</a>
+    <p style="font-size: 17px; color: var(--text-secondary); margin: 0 0 40px; font-weight: 300; line-height: 1.7;">מצטרפים לקבוצה, מכירים את החברים, וממריאים יחד — כבר הערב.</p>
+    <a href="#gates" style="display: inline-block; background: var(--gradient-blue-btn); color: #fff; padding: 17px 48px; border-radius: 8px; font-size: 17px; font-weight: 700; box-shadow: 0 8px 32px rgba(59,130,246,0.45); transition: transform 0.2s ease;" style-hover="transform: translateY(-2px); color: #fff;">💬 הצטרפו לקהילה עכשיו</a>
   </div>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
-<footer style="border-top: 1px solid #1c2540; padding: 40px 32px; background: #04070f;">
+<footer style="border-top: 1px solid var(--border-color); padding: 40px 32px; background: var(--bg-deep);">
   <div style="max-width: 1240px; margin: 0 auto;">
     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 32px; margin-bottom: 32px;">
       <div style="display: flex; align-items: center; gap: 10px;">
         <span style="font-size: 18px;">✈️</span>
-        <a href="/admin.html" style="font-weight: 700; font-size: 14px; color: #e8ecf4; transition: color 0.2s ease;">דוקטור סימולטור</a>
+        <a href="/admin.html" style="font-weight: 700; font-size: 14px; color: var(--text-primary); transition: color 0.2s ease;">דוקטור סימולטור</a>
       </div>
       <div style="display: flex; gap: 20px; align-items: center;">
         <a href="https://www.facebook.com/doctorsimulator/" target="_blank" rel="noopener" style="font-size: 24px; transition: transform 0.2s ease;" title="Facebook">f</a>
         <a href="https://www.instagram.com/doctor_simulator/" target="_blank" rel="noopener" style="font-size: 24px; transition: transform 0.2s ease;" title="Instagram">📷</a>
       </div>
     </div>
-    <div style="border-top: 1px solid #1c2540; padding-top: 24px; font-family: 'Space Grotesk', monospace; font-size: 11px; color: #64748b; letter-spacing: 2px; text-align: center;">DOCTOR SIMULATOR © 2026 — ISRAEL FLIGHT SIM COMMUNITY</div>
+    <div style="border-top: 1px solid var(--border-color); padding-top: 24px; font-family: 'Space Grotesk', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 2px; text-align: center;">DOCTOR SIMULATOR © 2026 — ISRAEL FLIGHT SIM COMMUNITY</div>
   </div>
 </footer>
 
