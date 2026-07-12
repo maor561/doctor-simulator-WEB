@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="he">
+<html dir="rtl" lang="he" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,8 +47,10 @@
       --cta-glow: rgba(29,78,216,0.25);
       --tool-tint-blue: rgba(29,78,216,0.12);
       --tool-tint-green: rgba(16,185,129,0.1);
+      --tool-tint-purple: rgba(109,40,217,0.14);
       --card-number-blue: rgba(59,130,246,0.12);
       --card-number-green: rgba(16,185,129,0.12);
+      --card-number-purple: rgba(139,92,246,0.14);
     }
 
     /* ════ THEME VARIABLES — LIGHT ════ */
@@ -83,8 +85,10 @@
       --cta-glow: rgba(37,99,235,0.12);
       --tool-tint-blue: rgba(37,99,235,0.07);
       --tool-tint-green: rgba(5,150,105,0.07);
+      --tool-tint-purple: rgba(109,40,217,0.08);
       --card-number-blue: rgba(37,99,235,0.10);
       --card-number-green: rgba(5,150,105,0.10);
+      --card-number-purple: rgba(109,40,217,0.10);
     }
 
     html { direction: rtl; font-size: 16px; }
@@ -218,7 +222,8 @@
 
     /* Single column layouts - MOBILE */
     div[style*="grid-template-columns: 1fr 1fr"],
-    div[style*="repeat(2, 1fr)"] {
+    div[style*="repeat(2, 1fr)"],
+    div[style*="repeat(3, 1fr)"] {
       grid-template-columns: 1fr !important;
       gap: 16px !important;
     }
@@ -304,7 +309,8 @@
       }
 
       div[style*="grid-template-columns: 1fr 1fr"],
-      div[style*="repeat(2, 1fr)"] {
+      div[style*="repeat(2, 1fr)"],
+      div[style*="repeat(3, 1fr)"] {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 24px !important;
       }
@@ -356,6 +362,12 @@
       div[style*="position: absolute; left: -120px"] img {
         width: 400px !important;
         height: 400px !important;
+      }
+
+      /* Tools grid: 3 equal columns on desktop */
+      div[style*="repeat(3, 1fr)"] {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 28px !important;
       }
     }
   </style>
@@ -446,7 +458,7 @@
     </div>
     <p style="color: var(--text-muted); font-size: 15px; margin: 0 0 48px;">פותחו בהתנדבות, מתוך אהבה לתחום — חינם לכל חברי הקהילה</p>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
       <a href="https://flight-target.vercel.app/" target="_blank" rel="noopener" style="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; background: linear-gradient(160deg, var(--tool-tint-blue), var(--bg-card-soft) 55%); color: inherit; transition: all 0.25s ease; overflow: hidden;" style-hover="border-color: #3b82f6; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(59,130,246,0.15); color: inherit;">
         <div style="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px; font-weight: 700; color: var(--card-number-blue); line-height: 1;">01</div>
         <img src="https://flight-target.vercel.app/logo.png" alt="Flight Target" style="height: 64px; width: 64px; margin-bottom: 20px; object-fit: contain;">
@@ -463,6 +475,15 @@
         <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: var(--accent-green); letter-spacing: 2px; margin-bottom: 16px;">DOCTOR-SIMULATOR-FLIGHTS.VERCEL.APP</div>
         <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin: 0 0 28px; font-weight: 300;">פרוייקט טיול מסביב לעולם<br>הצטרפו אלינו לטיסה מסביב לעולם&nbsp;<br>כל הפרטים בפנים&nbsp;</p>
         <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: var(--accent-green-light);">כניסה<span style="font-family: &quot;Space Grotesk&quot;, monospace;">←</span></span>
+      </a>
+
+      <a href="https://main.vatil.org.il/" target="_blank" rel="noopener" style="position: relative; display: block; border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; background: linear-gradient(160deg, var(--tool-tint-purple), var(--bg-card-soft) 55%); color: inherit; transition: all 0.25s ease; overflow: hidden;" style-hover="border-color: #8b5cf6; transform: translateY(-4px); box-shadow: 0 20px 50px rgba(139,92,246,0.15); color: inherit;">
+        <div style="font-family: 'Space Grotesk', monospace; position: absolute; top: 28px; left: 32px; font-size: 60px; font-weight: 700; color: var(--card-number-purple); line-height: 1;">03</div>
+        <img src="https://main.vatil.org.il/_next/image?url=%2Fvatil-logo.png&w=256&q=75" alt="VATIL" style="height: 64px; width: 64px; margin-bottom: 20px; object-fit: contain;">
+        <h3 style="font-size: 26px; font-weight: 900; margin: 0 0 4px; letter-spacing: -0.5px;">VATIL</h3>
+        <div style="font-family: 'Space Grotesk', monospace; font-size: 11px; color: var(--accent-purple-light); letter-spacing: 2px; margin-bottom: 16px;">MAIN.VATIL.ORG.IL</div>
+        <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin: 0 0 28px; font-weight: 300;">כלי חשוב לכל טייס בקהילה — מידע ותדרוכים לפני כל טיסה, במקום אחד ובקלות.</p>
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: var(--accent-purple-light);">כניסה<span style="font-family: &quot;Space Grotesk&quot;, monospace;">←</span></span>
       </a>
     </div>
   </div>
@@ -748,7 +769,7 @@ const themeToggle = document.getElementById('theme-toggle');
 const html = document.documentElement;
 
 // Load saved theme
-const savedTheme = localStorage.getItem('theme') || 'dark';
+const savedTheme = localStorage.getItem('theme') || 'light';
 html.setAttribute('data-theme', savedTheme);
 updateThemeButton();
 
