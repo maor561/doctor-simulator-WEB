@@ -319,10 +319,16 @@
       a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid"] {
         flex-direction: row-reverse !important;
       }
-      div[style*="width: 90px; background: linear-gradient"] {
+      a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card)"] > div:first-child {
         width: 90px !important;
         height: auto !important;
         flex-direction: column !important;
+        border-right: none !important;
+      }
+      a[style*="display: flex; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card)"] > div:not(:first-child) {
+        padding: 24px 28px !important;
+        border-top: none !important;
+        border-left: 2px dashed var(--border-soft) !important;
       }
 
       div[style*="position: absolute; left: -120px"] {
